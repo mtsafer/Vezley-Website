@@ -182,6 +182,13 @@ form {
   text-align: left;
 }
 
+form.donations {
+  text-align: center;
+  table {
+    margin: 10px auto;
+  }
+}
+
 input {
   margin-bottom: 15px;
 }

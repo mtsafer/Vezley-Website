@@ -4,6 +4,17 @@ class UsersController < ApplicationController
 		@user = User.new
 	end
 
+	def show
+		@user = User.find_by_id params[:id]
+		if !logged_in?
+			flash[:warning] = "You must be logged in to view your profile"
+			redirect_to root_path
+	  elsif current_user != @user
+				flash[:warning] = "You can only view your own profile"
+				redirect_to root_path
+		end
+	end
+
 	def create
 		@user = User.new user_params
 		if @user.save

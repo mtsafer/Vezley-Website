@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root                'static_pages#home'
+  root                   'static_pages#home'
 
-  get    'manifesto' => 'static_pages#manifesto' 
+  get    'manifesto' =>  'static_pages#manifesto' 
 
   get    'shop'      =>  'shops#index'
 
@@ -22,11 +22,17 @@ Rails.application.routes.draw do
 
   post   'signup'    =>  'users#create'
 
-  get    'login'     => 'sessions#new'
+  get    'login'     =>  'sessions#new'
 
-  post   'login'     => 'sessions#create'
+  post   'login'     =>  'sessions#create'
   
-  delete 'logout'    => 'sessions#destroy'
+  delete 'logout'    =>  'sessions#destroy'
+
+  get    'users/:id' =>  'users#show'
+
+  get    'thankyou'  =>  'static_pages#thanks'
+
+  get    'cancel'    =>  'static_pages#cancel'
 
 
 end
