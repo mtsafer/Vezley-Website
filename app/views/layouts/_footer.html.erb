@@ -1,13 +1,14 @@
 <footer class="footer">
-  <small>
-    The <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-    by <a href="http://www.michaelhartl.com/">Michael Hartl</a>
+  <small class="inline">
+    <p>This website powered and created by <a href="#" target="_blank">Martin Safer</a></p>
+  
+    <div class="center inline">&#169; Vezley 2016</div>
+    <nav>
+      <ul>
+        <li><%= link_to "About", about_path %></li>
+        <li><%= link_to "Contact", '#' %></li>
+        <li><a href="#">News</a></li>
+      </ul>
+    </nav>
   </small>
-  <nav>
-    <ul>
-      <li><%= link_to "About", about_path %></li>
-      <li><%= link_to "Contact", '#' %></li>
-      <li><a href="http://news.railstutorial.org/">News</a></li>
-    </ul>
-  </nav>
 </footer>
