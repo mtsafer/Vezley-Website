@@ -1,0 +1,21 @@
+<div class="info contact">
+	<p></p>
+	<h1>contact</h1>
+
+	<div class="links">
+		<%= link_to(image_tag("https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/945px-Twitter_bird_logo_2012.svg.png", class: 'media'), "https://twitter.com/VezleyVastion", class: 'twitter', target: '_blank')  %>
+
+		<%= link_to(image_tag("https://www.youtube.com/yt/brand/media/image/YouTube-logo-light.png", class: 'media'), "https://www.youtube.com/channel/UC5ZVDtR88rN2eaq93K0qgeg", class: 'youtube', target: '_blank')  %>
+
+		<%= link_to(image_tag("http://www.iconarchive.com/download/i75918/martz90/circle/steam.ico", class: 'media'), "http://steamcommunity.com/groups/Vezzelution", class: 'steam', target: '_blank')  %>
+	</div>
+	<br>
+	<%= form_for @user, url: {action: "contact_post"} do |f| %>
+	<%= render 'shared/error_messages' %>
+
+  <%= f.label :email %>
+  <%= f.text_area :body, class: 'form-control' %>
+
+  <%= f.submit "Send Message", class: "btn btn-primary" %>
+<% end %>
+</div>

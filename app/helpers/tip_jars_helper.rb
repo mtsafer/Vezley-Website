@@ -1,0 +1,2 @@
+module TipJarsHelper
+end

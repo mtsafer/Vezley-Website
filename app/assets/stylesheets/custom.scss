@@ -18,6 +18,7 @@ $gray-medium-light: #eaeaea;
 body {
   padding-top: 60px;
   background-color: #19171c;
+  text-align: center;
 }
 
 section {
@@ -94,6 +95,7 @@ p {
 /* footer */
 
 footer {
+  text-align: left;
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
@@ -140,6 +142,71 @@ footer {
     text-align: left;
     margin: 10px 50px;
   }
+}
+
+/* contact */
+
+.media {
+  width: 50px;
+  height: auto;
+}
+
+.links {
+  text-align: center;
+}
+
+.btn{
+  margin: 15px 0 20px 0;
+}
+
+/* forms */
+
+.checkbox {
+  color: #9d9d9d;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+
+
+form {
+  text-align: left;
+}
+
+input {
+  margin-bottom: 15px;
+}
+
+#error_explanation {
+  li {
+    list-style: none;
+    color: red;
+  }
+}
+
+.field_with_errors {
+  label {
+    color: red;
+  }
+}
+
+/* flash */
+.flash{
+  text-align: center;
+  padding: 0 10px;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
 }
 
 /* querries */
