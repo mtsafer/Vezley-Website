@@ -144,6 +144,16 @@ footer {
   }
 }
 
+/* the forums */
+
+a.forum:hover {
+  .info{
+    background-color: #4d4d4d;
+    transition: 0.2s;
+  }
+  text-decoration: none;
+}
+
 /* contact */
 
 .media {
@@ -180,6 +190,14 @@ footer {
 
 form {
   text-align: left;
+  display: inline-block;
+  label {
+    display: block;
+  }
+  .custom {
+    margin-top: 34px;
+    margin-left: 25px;
+  }
 }
 
 form.donations {
