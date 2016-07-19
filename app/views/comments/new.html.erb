@@ -11,6 +11,7 @@
 			  <%= f.text_area :body, class: 'form-control' %>
 
 			  <%= f.submit "Comment", class: "btn btn-success" %>
+			  <%= link_to "Back", "/forum/#{@subject}/#{@id}", class: "btn btn-primary" %>
 			<% end %>
 		</div>
 	</div>

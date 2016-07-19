@@ -2,6 +2,8 @@ class CommentsController < ApplicationController
 
 	def new
 		@comment = Comment.new
+		@subject = params[:subject]
+		@id = params[:id]
 	end
 
 	def create

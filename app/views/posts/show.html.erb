@@ -23,6 +23,7 @@
 </div>
 
 <%= link_to "Comment", new_comment_path, class: "btn btn-success" %>
+<%= link_to "Back", "/forum/#{@post.subject.name}", class: "btn btn-primary" %>
 
 <% @post.comments.each do |c| %>
 	<div class="info comment">
