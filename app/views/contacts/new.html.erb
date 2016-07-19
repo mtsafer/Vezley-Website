@@ -11,17 +11,19 @@
 	</div>
 	<br>
 	<div class="container-fluid">
-		<% if @user %>	
-			<%= form_for @contact do |f| %>
-				<%= render 'shared/error_messages_contacts' %>
+    <div class="col-md-6 col-md-offset-3">
+			<% if @user %>	
+				<%= form_for @contact do |f| %>
+					<%= render 'shared/error_messages_contacts' %>
 
-			  <%= f.label 'Send a Message' %>
-			  <%= f.text_area :message, class: 'form-control form-field' %>
+				  <%= f.label 'Send a Message' %>
+				  <%= f.text_area :message, class: 'form-control form-field' %>
 
-			  <%= f.submit "Send Message", class: "btn btn-success" %>
+				  <%= f.submit "Send Message", class: "btn btn-success" %>
+				<% end %>
+			<% else %>
+				<h2>Sorry, but you must be signed in to access this content.</h2>
 			<% end %>
-		<% else %>
-			<h2>Sorry, but you must be signed in to access this content.</h2>
-		<% end %>
+		</div>
 	</div>
 </div>

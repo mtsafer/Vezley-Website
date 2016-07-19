@@ -2,14 +2,84 @@
 	<% @subject.each do |s| %>
 		<div class="info forum">
 			<h1><%=s.name%></h1>
-			
 			<br>
+			<% @post.each do |post| %>
+				<ul class="posts">
+					<% if post.subject == s %>
+						<a href="<%="#{s.name}/#{post.id}"%>">
+							<li class="post">
+								<div class="row">
+									<div class="row-height">
+										<div class="col-md-6 col-height user-info">
+											<div class="inside">
+												<div class="content">
+												  <h3><%=post.title%></h3>	
+												</div>
+											</div>
+										</div>
+										<div class="col-md-3 col-height">
+											<div class="inside">
+												<div class="content">
+												<h4><%= post.user.name %></h4>
+												<h4>Posted: <%= post.created_at.strftime("%-m/%-e/%-y") %></h4>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-3 col-height">
+											<div class="inside">
+												<div class="content">
+												<h4>Comments: <%= post.comments.count %></h4>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+						</a>
+					<% end %>
+				</ul>
+			<% end %>
+			<%= link_to "Start a Thread", "#{s.name}/new", class: "btn btn-success"  %>
 		</div>
 	<% end %>
 <% else %>
 	<div class="info forum">
 		<h1><%=@subject.name%></h1>
-		
 		<br>
+		<% @post.each do |post| %>
+			<ul class="posts">
+				<a href="<%="#{@subject.name}/#{post.id}"%>">
+					<li class="post">
+						<div class="row">
+							<div class="row-height">
+								<div class="col-md-6 col-height user-info">
+									<div class="inside">
+										<div class="content">
+										  <h3><%=post.title%></h3>	
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3 col-height">
+									<div class="inside">
+										<div class="content">
+										<h4><%= post.user.name %></h4>
+										<h4>Posted: <%= post.created_at.strftime("%-m/%-e/%-y") %></h4>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3 col-height">
+									<div class="inside">
+										<div class="content">
+										<h4>Comments: <%= post.comments.count %></h4>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</a>
+			</ul>
+		<% end %>
+		<%= link_to "Start a Thread", "#{@subject.name}/new", class: "btn btn-success"  %>
 	</div>
 <% end %>
