@@ -10,14 +10,19 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		@post = Post.new post_params
-		@post.user_id = current_user.id
-		@post.subject_id = Subject.find_by_name(params[:subject]).id
-		if @post.save
-			flash[:success] = "New Thread Created"
-			redirect_to "/forum/#{params[:subject]}/#{@post.id}"
+		if logged_in?	
+			@post = Post.new post_params
+			@post.user_id = current_user.id
+			@post.subject_id = Subject.find_by_name(params[:subject]).id
+			if @post.save
+				flash[:success] = "New Thread Created"
+				redirect_to "/forum/#{params[:subject]}/#{@post.id}"
+			else
+				render :new
+			end
 		else
-			render :new
+			flash[:warning] = "You must be logged in to post on the forum"
+	    redirect_to login_path # halts request cycle
 		end
 	end
 

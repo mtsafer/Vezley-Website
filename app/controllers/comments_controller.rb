@@ -5,14 +5,19 @@ class CommentsController < ApplicationController
 	end
 
 	def create
-		@comment = Comment.new comment_params
-		@comment.user_id = current_user.id
-		@comment.post_id = params[:id]
-		if @comment.save
-			flash[:success] = "Comment posted"
-			redirect_to "/forum/#{params[:subject]}/#{params[:id]}"
+		if logged_in?
+			@comment = Comment.new comment_params
+			@comment.user_id = current_user.id
+			@comment.post_id = params[:id]
+			if @comment.save
+				flash[:success] = "Comment posted"
+				redirect_to "/forum/#{params[:subject]}/#{params[:id]}"
+			else
+				render :new
+			end
 		else
-			render :new
+			flash[:warning] = "You must be logged in to post on the forum"
+	    redirect_to login_path # halts request cycle
 		end
 	end
 
