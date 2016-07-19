@@ -1,0 +1,15 @@
+<% if @subject.class == Subject::ActiveRecord_Relation %>	
+	<% @subject.each do |s| %>
+		<div class="info forum">
+			<h1><%=s.name%></h1>
+			
+			<br>
+		</div>
+	<% end %>
+<% else %>
+	<div class="info forum">
+		<h1><%=@subject.name%></h1>
+		
+		<br>
+	</div>
+<% end %>

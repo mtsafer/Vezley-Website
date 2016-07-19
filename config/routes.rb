@@ -2,37 +2,39 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root                   'static_pages#home'
+  root                   			'static_pages#home'
 
-  get    'manifesto' =>  'static_pages#manifesto' 
+  get    'manifesto' 			=>  'static_pages#manifesto' 
 
-  get    'shop'      =>  'shops#index'
+  get    'shop'      			=>  'shops#index'
 
-  get    'tipjar'    =>  'tip_jars#index'
+  get    'tipjar'    			=>  'tip_jars#index'
 
-  get    'forum'     =>  'forums#index'
+  get    'forum'     			=>  'forums#index'
 
-  get    'contact'   =>  'contacts#new'
+  get    'contact'   			=>  'contacts#new'
 
-  get    'contacts'  =>  'contacts#new'
+  get    'contacts'  			=>  'contacts#new'
 
-  post   'contacts'  =>  'contacts#create'
+  post   'contacts'  			=>  'contacts#create'
 
-  get    'signup'    =>  'users#new'
+  get    'signup'  			  =>  'users#new'
 
-  post   'signup'    =>  'users#create'
+  post   'signup'   		  =>  'users#create'
 
-  get    'login'     =>  'sessions#new'
+  get    'login'     			=>  'sessions#new'
 
-  post   'login'     =>  'sessions#create'
+  post   'login'     			=>  'sessions#create'
   
-  delete 'logout'    =>  'sessions#destroy'
+  delete 'logout'    			=>  'sessions#destroy'
 
-  get    'users/:id' =>  'users#show'
+  get    'users/:id' 			=>  'users#show'
 
-  get    'thankyou'  =>  'static_pages#thanks'
+  get    'thankyou'  		  =>  'static_pages#thanks'
 
-  get    'cancel'    =>  'static_pages#cancel'
+  get    'cancel'   		  =>  'static_pages#cancel'
+
+  get    'forum/:subject' =>  'forums#show'
 
 
 end

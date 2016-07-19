@@ -14,6 +14,9 @@ class User < ApplicationRecord
 
 	has_secure_password
 
+  has_many :posts
+  has_many :comments, through: :posts
+
 	# Returns a digested hashing of the given string
 	def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
