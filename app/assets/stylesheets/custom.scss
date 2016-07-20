@@ -168,6 +168,33 @@ a.forum:hover {
   }
 }
 
+.info.forum {
+  .row-height {  
+    .col-height {
+      .inside {
+        margin: 0;
+        .content {
+          padding: 0;
+          p {
+            font-size: 0.5em;
+            margin: auto;
+          }
+        }
+      }
+    }
+  }
+
+  .col-md-6.col-height.user-info {
+    padding-bottom: 0;
+    .inside {
+      height: 60%;
+    }
+    .content {
+      height: 60%;
+    }
+  }
+}
+
 .content h4{
   text-align: center;
 }
@@ -194,12 +221,21 @@ a.forum:hover {
     transition: 0.2s;
   }
 
-  a {
+  .post-link {
     text-decoration: none;
     color: #888;
     &hover {
       text-decoration: none;
     }
+  }
+
+  .btn {
+    margin-bottom: 0;
+    color: white;
+  }
+
+  .tool-buttons {
+    
   }
 }
 

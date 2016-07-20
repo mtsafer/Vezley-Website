@@ -6,29 +6,44 @@
 			<% @post.each do |post| %>
 				<ul class="posts">
 					<% if post.subject == s %>
-						<a href="<%="#{s.name}/#{post.id}"%>">
+						<div class="tool-buttons">
+							<% if current_user.mod == 1 || current_user == post.user %>
+								<% if current_user == post.user %>
+						  		<%= link_to "Edit", "/forum/#{post.id}/edit", class: "btn btn-primary" %>
+						  	<% end %>
+							  <%= link_to "Delete", post_path(s.name,post.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+					  	<% end %>
+					  </div>
+						<a class="post-link" href="<%="#{s.name}/#{post.id}"%>">
 							<li class="post">
 								<div class="row">
 									<div class="row-height">
 										<div class="col-md-6 col-height user-info">
 											<div class="inside">
 												<div class="content">
-												  <h3><%=post.title%></h3>	
+												  <p>
+												  	<%=post.title%>
+												  </p>
 												</div>
 											</div>
 										</div>
 										<div class="col-md-3 col-height">
 											<div class="inside">
 												<div class="content">
-												<h4><%= post.user.name %></h4>
-												<h4>Posted: <%= post.created_at.strftime("%-m/%-e/%-y") %></h4>
+												<p><%= post.user.name %></p>
+												<p>Posted: <%= post.created_at.strftime("%-m/%-e/%-y") %></p>
+												<% recent = post %>
+												<% post.comments.each do |c| %>
+													<% recent = c if c.updated_at > recent.updated_at %>
+												<% end %>
+												<p>Last Post: <%= recent.updated_at.strftime("%-m/%-e/%-y") %></p>
 												</div>
 											</div>
 										</div>
 										<div class="col-md-3 col-height">
 											<div class="inside">
 												<div class="content">
-												<h4>Comments: <%= post.comments.count %></h4>
+												<p>Comments: <%= post.comments.count %></p>
 												</div>
 											</div>
 										</div>
@@ -48,29 +63,42 @@
 		<br>
 		<% @post.each do |post| %>
 			<ul class="posts">
-				<a href="<%="#{@subject.name}/#{post.id}"%>">
+				<div class="tool-buttons">
+					<% if current_user.mod == 1 || current_user == post.user %>
+						<% if current_user == post.user %>
+				  		<%= link_to "Edit", "/forum/#{post.id}/edit", class: "btn btn-primary" %>
+				  	<% end %>
+					  <%= link_to "Delete", post_path(s.name,post.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+			  	<% end %>
+			  </div>
+				<a class="post-link" href="<%="#{@subject.name}/#{post.id}"%>">
 					<li class="post">
 						<div class="row">
 							<div class="row-height">
 								<div class="col-md-6 col-height user-info">
 									<div class="inside">
 										<div class="content">
-										  <h3><%=post.title%></h3>	
+										  <p><%=post.title%></p>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-3 col-height">
 									<div class="inside">
 										<div class="content">
-										<h4><%= post.user.name %></h4>
-										<h4>Posted: <%= post.created_at.strftime("%-m/%-e/%-y") %></h4>
+										<p><%= post.user.name %></p>
+										<p>Posted: <%= post.created_at.strftime("%-m/%-e/%-y") %></p>
+										<% recent = post %>
+										<% post.comments.each do |c| %>
+											<% recent = c if c.updated_at > recent.updated_at %>
+										<% end %>
+										<p>Last Post: <%= recent.updated_at.strftime("%-m/%-e/%-y") %></p>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-3 col-height">
 									<div class="inside">
 										<div class="content">
-										<h4>Comments: <%= post.comments.count %></h4>
+										<p>Comments: <%= post.comments.count %></p>
 										</div>
 									</div>
 								</div>

@@ -1,10 +1,10 @@
 <div class="info new-post">
 	<p></p>
-	<h1>New Thread - <%=@subject%></h1>
+	<h1>Edit Thread</h1>
 	<br>
 	<div class="container-fluid">
     <div class="col-md-6 col-md-offset-3">
-			<%= form_for @post, url: new_post_path do |f| %>
+			<%= form_for @post, url: edit_post_path do |f| %>
 				<%= render 'shared/error_messages_posts' %>
 
 			  <%= f.label :title %>
@@ -13,7 +13,7 @@
 			  <%= f.label :body %>
 			  <%= f.text_area :body, class: 'form-control' %>
 
-			  <%= f.submit "Post", class: "btn btn-success" %>
+			  <%= f.submit "Update", class: "btn btn-success" %>
 			  <%= link_to "Back", "/forum/all", class: "btn btn-primary" %>
 			<% end %>
 		</div>

@@ -40,11 +40,23 @@ Rails.application.routes.draw do
 
   post   'forum/:subject/new' 				=>  'posts#create'
 
-  get    'forum/:subject/:id' 				=>  'posts#show'
+  get    'forum/:id/edit' 						=>  'posts#edit', as: :edit_post
+
+  get    'forum/:subject/:id' 				=>  'posts#show', as: :post
+
+  patch  'forum/:id/edit' 						=>  'posts#update'
+
+  delete 'forum/:subject/:id'         =>  'posts#destroy'
 
   get    'forum/:subject/:id/comment' =>  'comments#new', as: :new_comment
 
   post   'forum/:subject/:id/comment' =>  'comments#create'
+
+  get    'forum/:subject/:id/comment/edit' =>  'comments#edit', as: :edit_comment
+
+  patch  'forum/:subject/:id/comment/edit' =>  'comments#update'
+
+  delete 'forum/:subject/:id/comment' =>  'comments#destroy', as: :delete_comment
 
 
 end

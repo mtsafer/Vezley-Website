@@ -17,6 +17,8 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new user_params
+		@user.mod = 0
+		@user.owner = 0
 		if @user.save
 			flash[:success] = "Welcome to the Vezzelution"
 			log_in @user

@@ -7,6 +7,12 @@
 						<p><%= @post.user.name %></p>
 						<p></p>
 						<p>Joined: <%=@post.user.created_at.strftime("%-m/%-d/%-y")%></p>
+						<p></p>
+						<p>Posted: <%=@post.created_at.strftime("%-m/%-d/%-y")%></p>
+						<% if @post.updated_at != @post.created_at %>
+							<p></p>
+							<p>Edited: <%=@post.updated_at.strftime("%-m/%-e/%-y, %l:%M %p")%></p>
+						<% end %>
 					</div>
 				</div>
 			</div>
@@ -35,9 +41,14 @@
 						<div class="content">
 							<p><%= c.user.name %></p>
 							<p></p>
+							<p>Joined: <%=c.user.created_at.strftime("%-m/%-e/%-y")%></p>
+							<p></p>
 							<p>Posted: <%=c.created_at.strftime("%-m/%-e/%-y, %l:%M %p")%></p>
 							<p><p>
-							<p>Joined: <%=c.user.created_at.strftime("%-m/%-e/%-y")%></p>
+							<% if c.updated_at != c.created_at %>
+								<p></p>
+								<p>Edited: <%=c.updated_at.strftime("%-m/%-e/%-y, %l:%M %p")%></p>
+							<% end %>
 						</div>
 					</div>
 				</div>
@@ -45,6 +56,14 @@
 					<div class="inside">
 						<div class="content">
 							<p><%= c.body %></p>
+							<div class="tool-buttons">
+								<% if current_user.mod == 1 || current_user == c.user %>
+						  		<% if current_user == c.user%>
+						  			<%= link_to "Edit", edit_comment_path(@post.subject.name,c.id), class: "btn btn-primary" %>
+						  		<% end %>
+							  	<%= link_to "Delete", delete_comment_path(@post.subject.name,c.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+						  	<% end %>
+			  			</div>
 						</div>
 					</div>
 				</div>

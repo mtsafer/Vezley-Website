@@ -4,7 +4,7 @@ class Post < ApplicationRecord
 	validates :title, length: {maximum: 40}
 
 
-	has_many :comments
+	has_many :comments, dependent: :destroy
 	belongs_to :user
 	belongs_to :subject
 
