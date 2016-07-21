@@ -4,8 +4,13 @@ class ForumsController < ApplicationController
 	end
 
 	def show
-		@subject = ((params[:subject] == "all") ? Subject.all : Subject.find_by_name(params[:subject]))
-		@post = ((params[:subject] == "all") ? Post.all : Post.where(subject_id: @subject.id).find_each)
+		if params[:subject] == "all"
+			@subject = Subject.all
+			@post = Post.order(sticky: :desc, updated_at: :desc).all
+		else
+			@subject = Subject.find_by_name(params[:subject])
+			@post = Post.where(subject_id: @subject.id).order(sticky: :desc, updated_at: :desc).all
+		end
 	end
 
 	def new

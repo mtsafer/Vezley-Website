@@ -1,18 +1,19 @@
 <div class="info view-post container-fluid">
 	<div class="row">
 		<div class="row-height">
-			<div class="col-md-4 col-height user-info">
+			<div class="col-md-4 col-height user-info post-info">
 				<div class="inside">
 					<div class="content">
 						<p><%= @post.user.name %></p>
-						<p></p>
-						<p>Joined: <%=@post.user.created_at.strftime("%-m/%-d/%-y")%></p>
-						<p></p>
-						<p>Posted: <%=@post.created_at.strftime("%-m/%-d/%-y")%></p>
-						<% if @post.updated_at != @post.created_at %>
-							<p></p>
-							<p>Edited: <%=@post.updated_at.strftime("%-m/%-e/%-y, %l:%M %p")%></p>
+						<% if @post.user.owner == 1 %>
+							<p>Owner</p>
+						<% elsif @post.user.mod == 1 %>
+							<p>Moderator</p>
+						<% else %>
+							<p>Viewer</p>
 						<% end %>
+						<p>Joined: <%=@post.user.created_at.strftime("%-m/%-d/%-y")%></p>
+						<p>Posted: <%=@post.created_at.strftime("%-m/%-d/%-y")%></p>
 					</div>
 				</div>
 			</div>
@@ -20,7 +21,7 @@
 				<div class="inside">
 					<div class="content">
 						<h1><%= @post.title %></h1>
-						<p><%= @post.body %></p>
+						<p><%= simple_format @post.body %></p>
 					</div>
 				</div>
 			</div>
@@ -36,17 +37,20 @@
 		<h1></h1>
 		<div class="row">
 			<div class="row-height">
-				<div class="col-md-4 col-height user-info">
+				<div class="col-md-4 col-height user-info post-info">
 					<div class="inside">
 						<div class="content">
 							<p><%= c.user.name %></p>
-							<p></p>
+							<% if c.user.owner == 1 %>
+								<p>Owner</p>
+							<% elsif c.user.mod == 1 %>
+								<p>Moderator</p>
+							<% else %>
+								<p>Viewer</p>
+							<% end %>
 							<p>Joined: <%=c.user.created_at.strftime("%-m/%-e/%-y")%></p>
-							<p></p>
 							<p>Posted: <%=c.created_at.strftime("%-m/%-e/%-y, %l:%M %p")%></p>
-							<p><p>
 							<% if c.updated_at != c.created_at %>
-								<p></p>
 								<p>Edited: <%=c.updated_at.strftime("%-m/%-e/%-y, %l:%M %p")%></p>
 							<% end %>
 						</div>
@@ -55,14 +59,16 @@
 				<div class="col-md-8 col-height">
 					<div class="inside">
 						<div class="content">
-							<p><%= c.body %></p>
+							<p><%= simple_format c.body %></p>
 							<div class="tool-buttons">
-								<% if current_user.mod == 1 || current_user == c.user %>
-						  		<% if current_user == c.user%>
-						  			<%= link_to "Edit", edit_comment_path(@post.subject.name,c.id), class: "btn btn-primary" %>
-						  		<% end %>
-							  	<%= link_to "Delete", delete_comment_path(@post.subject.name,c.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
-						  	<% end %>
+								<% if current_user %>
+									<% if current_user.mod == 1 || current_user == c.user %>
+							  		<% if current_user == c.user%>
+							  			<%= link_to "Edit", edit_comment_path(@post.subject.name,c.id), class: "btn btn-primary" %>
+							  		<% end %>
+								  	<%= link_to "Delete", delete_comment_path(@post.subject.name,c.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+							  	<% end %>
+							  <% end %>
 			  			</div>
 						</div>
 					</div>

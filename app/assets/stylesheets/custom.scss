@@ -146,6 +146,19 @@ footer {
 
 /* the forums */
 
+select.subjects {
+  display: block;
+  width: 9em;
+  height: 3em;
+}
+
+.move-post form{
+  text-align: center;
+  select{
+    margin: auto;
+  }
+}
+
 a.forum:hover {
   .info{
     background-color: #4d4d4d;
@@ -168,6 +181,30 @@ a.forum:hover {
   }
 }
 
+/*
+.post.sticky {
+  background-color: #274E27;
+}
+*/
+
+.user-info.side-info {
+  p.icons, p.title {
+    display: inline-block;
+    margin-top: 50px;
+  }
+  p.title {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+}
+
+.user-info.post-info {
+  p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
+
 .info.forum {
   .row-height {  
     .col-height {
@@ -178,6 +215,7 @@ a.forum:hover {
           p {
             font-size: 0.5em;
             margin: auto;
+            padding-left: 15px;
           }
         }
       }
@@ -209,10 +247,7 @@ a.forum:hover {
     text-align: left;
     list-style: none;
     font-size: 2em;
-  }
-
-  li {
-    background-color: #2C2C2C;
+    background-color: #272727;
     margin: 2px 0;
   }
 

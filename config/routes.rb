@@ -34,7 +34,11 @@ Rails.application.routes.draw do
 
   get    'cancel'   		  						=>  'static_pages#cancel'
 
-  get    'forum/:subject' 						=>  'forums#show'
+  get    'forum/:id/move'             =>  'posts#move', as: :move
+
+  patch  'forum/:id/move'             =>  'posts#move_update'
+
+  get    'forum/:subject' 						=>  'forums#show', as: :subject
 
   get    'forum/:subject/new' 				=>  'posts#new', as: :new_post
 
@@ -57,6 +61,10 @@ Rails.application.routes.draw do
   patch  'forum/:subject/:id/comment/edit' =>  'comments#update'
 
   delete 'forum/:subject/:id/comment' =>  'comments#destroy', as: :delete_comment
+
+  patch  'forum/:id/:sticky/sticky' 	=>  'posts#sticky', as: :sticky_comment
+
+  patch  'forum/:id/:closed/close'    =>  'posts#close', as: :close_comment
 
 
 end
