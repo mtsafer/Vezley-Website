@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   
   delete 'logout'    									=>  'sessions#destroy'
 
-  get    'users/:id' 									=>  'users#show'
+  get    'users/:id' 									=>  'users#show', as: :user
 
   get    'thankyou'  		  						=>  'static_pages#thanks'
 
@@ -65,6 +65,8 @@ Rails.application.routes.draw do
   patch  'forum/:id/:sticky/sticky' 	=>  'posts#sticky', as: :sticky_comment
 
   patch  'forum/:id/:closed/close'    =>  'posts#close', as: :close_comment
+
+  resources :account_activations, only: [:edit]
 
 
 end

@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find_by_id params[:id]
+		redirect_to root_url and return unless @user.activated?
 		if !logged_in?
 			flash[:warning] = "You must be logged in to view your profile"
 			redirect_to root_path
@@ -20,9 +21,11 @@ class UsersController < ApplicationController
 		@user.mod = 0
 		@user.owner = 0
 		if @user.save
-			flash[:success] = "Welcome to the Vezzelution"
-			log_in @user
-			redirect_to root_path
+			@user.send_activation_email
+      message = "Please check your email to activate your account."
+      message += " This may take a minute, please be patient."
+      flash[:info] = message
+      redirect_to root_url
 		else
 			render :new
 		end
