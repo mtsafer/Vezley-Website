@@ -6,10 +6,12 @@ class ForumsController < ApplicationController
 	def show
 		if params[:subject] == "all"
 			@subject = Subject.all
-			@post = Post.order(sticky: :desc, updated_at: :desc).all
+			@forums = Post.order(sticky: :desc, updated_at: :desc).all
 		else
 			@subject = Subject.find_by_name(params[:subject])
-			@post = Post.where(subject_id: @subject.id).order(sticky: :desc, updated_at: :desc).all
+			@forums = Post.where(subject_id: @subject.id).order(sticky: :desc,
+												updated_at: :desc).paginate(page: params[:page],
+																									  per_page: 10)
 		end
 	end
 

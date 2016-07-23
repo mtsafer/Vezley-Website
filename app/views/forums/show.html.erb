@@ -3,11 +3,11 @@
 		<div class="info forum">
 			<h1><%=s.name%></h1>
 			<br>
-			<% @post.each do |post| %>
+			<% @forums.each do |post| %>
 				<ul class="posts">
 					<% if post.subject == s %>
 						<div class="tool-buttons">
-							<% if current_user && current_user.mod == 1 || current_user == post.user %>
+					<% if current_user && current_user.mod == 1 || current_user == post.user %>
 								<% if current_user == post.user %>
 						  		<%= link_to "Edit", "/forum/#{post.id}/edit", class: "btn btn-primary" %>
 						  	<% end %>
@@ -18,52 +18,58 @@
 							  	<%= link_to "Close", close_comment_path(post.id,1), method: :patch, class: "btn btn-warning" %>
 							  	<%= link_to "Open", close_comment_path(post.id,0), method: :patch, class: "btn btn-success" %>
 							  <% end %>
-							  <%= link_to "Delete", post_path(s.name,post.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+							  <%= link_to "Delete", post_path(@subject.name,post.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
 					  	<% end %>
-					  </div>
-						<a class="post-link" href="<%="#{s.name}/#{post.id}"%>">
-							<li class="post <%="sticky" if post.sticky == 1%>">
-								<div class="row">
-									<div class="row-height">
-										<div class="col-md-6 col-height user-info side-info">
-											<div class="inside">
-												<div class="content">
-												<br>
-												  <p class="icons">
-												  	<% if post.sticky == 1 %>
-												  		<span class="glyphicon glyphicon glyphicon-pushpin"> </span>
-												  	<% end %>
-												  	<% if post.closed == 1 %>
-												  		<span class="glyphicon glyphicon-lock"> </span>
-												  	<% end %>
-												  </p>
-												  <p class="title">
-												  	<%=post.title%>
-												  </p>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-3 col-height">
-											<div class="inside">
-												<div class="content">
-												<p><%= post.user.name %></p>
-												<p>Posted: <%= post.created_at.strftime("%-m/%-e/%-y") %></p>
-												<p>Recent Activity: <%= post.updated_at.strftime("%-m/%-e/%-y") %></p>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-3 col-height side-info">
-											<div class="inside">
-												<div class="content">
-												<br>
-												<p>Comments: <%= post.comments.count %></p>
-												</div>
-											</div>
+			  </div>
+				<a class="post-link" href="<%="#{@subject.name}/#{post.id}"%>">
+					<li class="post">
+						<div class="row">
+							<div class="row-height">
+								<div class="col-md-6 col-sm-4 col-height user-info side-info">
+									<div class="inside">
+										<div class="content">
+											
+											<p class="icons">
+										  	<% if post.sticky == 1 %>
+										  		<span class="glyphicon glyphicon glyphicon-pushpin"> </span>
+										  	<% end %>
+										  	<% if post.closed == 1 %>
+										  		<span class="glyphicon glyphicon-lock"> </span>
+										  	<% end %>
+										  </p>
+										  <p class="title">
+										  	<%=post.title%>
+										  </p>
 										</div>
 									</div>
 								</div>
-							</li>
-						</a>
+								<div class="col-md-4 col-sm-6 col-height center-info">
+									<div class="inside">
+										<div class="content">
+										<div class="stats">
+											<p><%= post.user.name %></p>
+											<p>Posted: <%= post.created_at.strftime("%-m/%-e/%-y") %></p>
+											<% recent = post %>
+											<% post.comments.each do |c| %>
+												<% recent = c if c.updated_at > recent.updated_at %>
+											<% end %>
+											<p>Recent Activity: <%= recent.updated_at.strftime("%-m/%-e/%-y") %></p>
+										</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-2 col-height side-info">
+									<div class="inside">
+										<div class="content">
+					
+										<p>Comments: <%= post.comments.count %></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</a>
 					<% end %>
 				</ul>
 			<% end %>
@@ -74,7 +80,12 @@
 	<div class="info forum">
 		<h1><%=@subject.name%></h1>
 		<br>
-		<% @post.each do |post| %>
+
+		<div class="paginate">
+			<%=will_paginate%>
+		</div>
+
+		<% @forums.each do |post| %>
 			<ul class="posts">
 				<div class="tool-buttons">
 					<% if current_user && current_user.mod == 1 || current_user == post.user %>
@@ -95,10 +106,10 @@
 					<li class="post">
 						<div class="row">
 							<div class="row-height">
-								<div class="col-md-6 col-height user-info side-info">
+								<div class="col-md-6 col-sm-4 col-height user-info side-info">
 									<div class="inside">
 										<div class="content">
-											<br>
+											
 											<p class="icons">
 										  	<% if post.sticky == 1 %>
 										  		<span class="glyphicon glyphicon glyphicon-pushpin"> </span>
@@ -113,23 +124,25 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-md-3 col-height">
+								<div class="col-md-4 col-sm-6 col-height center-info">
 									<div class="inside">
 										<div class="content">
-										<p><%= post.user.name %></p>
-										<p>Posted: <%= post.created_at.strftime("%-m/%-e/%-y") %></p>
-										<% recent = post %>
-										<% post.comments.each do |c| %>
-											<% recent = c if c.updated_at > recent.updated_at %>
-										<% end %>
-										<p>Recent Activity: <%= recent.updated_at.strftime("%-m/%-e/%-y") %></p>
+										<div class="stats">
+											<p><%= post.user.name %></p>
+											<p>Posted: <%= post.created_at.strftime("%-m/%-e/%-y") %></p>
+											<% recent = post %>
+											<% post.comments.each do |c| %>
+												<% recent = c if c.updated_at > recent.updated_at %>
+											<% end %>
+											<p>Recent Activity: <%= recent.updated_at.strftime("%-m/%-e/%-y") %></p>
+										</div>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-3 col-height side-info">
+								<div class="col-md-2 col-height side-info">
 									<div class="inside">
 										<div class="content">
-										<br>
+										
 										<p>Comments: <%= post.comments.count %></p>
 										</div>
 									</div>
@@ -143,4 +156,9 @@
 		<%= link_to "Start a Thread", "#{@subject.name}/new", class: "btn btn-success"  %>
 		<%= link_to "All Subjects", "/forum/all", class: "btn btn-primary" %>
 	</div>
+
+	<div class="paginate paginate-bottom">
+		<%=will_paginate%>
+	</div>
+
 <% end %>

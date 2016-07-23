@@ -146,6 +146,14 @@ footer {
 
 /* the forums */
 
+.center-info {
+  p {
+    display: inline-block;
+    margin: 0 10px;
+    overflow: hidden;
+  }
+}
+
 select.subjects {
   display: block;
   width: 9em;
@@ -174,11 +182,20 @@ a.forum:hover {
 .user-info {
   border-right: 1px solid black;
   .content {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     padding-left: 25px;
     h3 {
       text-align: left;
     }
   }
+}
+
+.stats{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 /*
@@ -189,7 +206,7 @@ a.forum:hover {
 
 .user-info.side-info {
   p.icons, p.title {
-    display: inline-block;
+    display: inline;
     margin-top: 50px;
   }
   p.title {
@@ -220,16 +237,28 @@ a.forum:hover {
         }
       }
     }
+    .col-height.user-info{
+      .inside{
+        .content{
+          p{
+            font-size: 0.7em;
+          }
+        }
+      }
+    }
   }
 
   .col-md-6.col-height.user-info {
     padding-bottom: 0;
     .inside {
-      height: 60%;
+      height: 40px;
     }
     .content {
-      height: 60%;
+      height: 40px;
     }
+  }
+  p{
+    font-size: 1.7em;
   }
 }
 
@@ -238,15 +267,16 @@ a.forum:hover {
 }
 
 .view-post .user-info {
-  height: 100%;
+  height: 40px;
 }
 
 .posts {
   padding: 0;
+  margin: 0;
   li {
     text-align: left;
     list-style: none;
-    font-size: 2em;
+    font-size: 1.5em;
     background-color: #272727;
     margin: 2px 0;
   }
@@ -371,6 +401,14 @@ input {
 
 /* columns of same height */
 
+.row.height {
+  height: 40px;
+}
+
+.row-height {
+  
+}
+
 /* content styles */
 
 .inside {
@@ -403,6 +441,19 @@ input {
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
   }
+}
+
+/* pagination */
+.pagination {
+  margin: auto;
+}
+
+.paginate {
+  display: block;
+}
+
+.paginate-bottom {
+  margin-top: 15px;
 }
 
 /* sidebar */
@@ -449,13 +500,12 @@ aside {
 .row-height {
   display: table;
   table-layout: fixed;
-  height: 100%;
   width: 100%;
+  
 }
 .col-height {
   display: table-cell;
   float: none;
-  height: 100%;
 }
 .col-top {
   vertical-align: top;

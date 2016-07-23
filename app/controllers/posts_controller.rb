@@ -2,6 +2,8 @@ class PostsController < ApplicationController
 
 	def show
 		@post = Post.find_by_id params[:id]
+		@posts = Comment.where(post_id: @post.id).paginate(page: params[:page],
+																									 per_page: 10)
 	end
 
 	def new
