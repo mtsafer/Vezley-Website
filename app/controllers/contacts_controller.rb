@@ -6,8 +6,10 @@ class ContactsController < ApplicationController
 
   def create
   	@contact = Contact.new contact_params
+    @contact.user_id = current_user.id
   	if @contact.save
   		flash[:success] = "Message Sent"
+      UserMailer.contact_vezley(@contact).deliver_now
   		redirect_to root_path
   	else
   		@user = current_user

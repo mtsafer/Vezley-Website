@@ -30,6 +30,14 @@ Rails.application.routes.draw do
 
   get    'users/:id' 									=>  'users#show', as: :user
 
+  patch  'users/:id'                  =>  'users#ban'
+
+  get    'users/:id/edit'             =>  'users#edit', as: :edit_user
+
+  patch  'users/:id/edit'             =>  'users#update'
+
+  get    '/users'                     =>  'users#index', as: :users
+
   get    'thankyou'  		  						=>  'static_pages#thanks'
 
   get    'cancel'   		  						=>  'static_pages#cancel'

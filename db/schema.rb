@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722221516) do
+ActiveRecord::Schema.define(version: 20160723011305) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20160722221516) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text     "message"
+    t.integer  "user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(version: 20160722221516) do
     t.string   "activation_digest"
     t.boolean  "activated",         default: false
     t.datetime "activated_at"
+    t.boolean  "banned",            default: false
   end
 
 end

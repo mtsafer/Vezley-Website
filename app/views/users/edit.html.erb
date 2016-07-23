@@ -1,0 +1,26 @@
+<div class="info new-user">
+	<p></p>
+	<h1>Edit Profile</h1>
+	<br>
+	<div class="container-fluid">
+    <div class="col-md-6 col-md-offset-3">
+			<%= form_for @user, url: edit_user_path(@user) do |f| %>
+				<%= render 'shared/error_messages' %>
+
+			  <%= f.label :name %>
+			  <%= f.text_field :name, class: 'form-control' %>
+
+			  <%= f.label :email %>
+			  <%= f.text_field :email, class: 'form-control' %>
+
+				<%= f.label :password %>
+			  <%= f.password_field :password, class: 'form-control' %>
+
+			  <%= f.label :password_confirmation, "Confirmation" %>
+			  <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+			  <%= f.submit "Update", class: "btn btn-success" %>
+			<% end %>
+		</div>
+	</div>
+</div>

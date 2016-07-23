@@ -20,4 +20,9 @@ class UserMailer < ApplicationMailer
 
     mail to: "to@example.org"
   end
+
+  def contact_vezley(message)
+    @message = message
+    mail to: "mtsafer@gmail.com", subject: ""
+  end
 end

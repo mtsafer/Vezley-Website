@@ -1,0 +1,22 @@
+<div class="info all-users">
+	<div class="container-fluid">
+		<h1>All users</h1>
+		<br>
+		<%= will_paginate %>
+
+		<ul class="users">
+		  <% @users.each do |user| %>
+		    <li>
+		      <%= gravatar_for user, size: 50 %>
+		      <%= link_to user.name, user %>
+		      <% if current_user.mod == 1 && current_user != user %>
+				    | <%= link_to "ban", user, method: :patch,
+				                                  data: { confirm: "You sure?" } %>
+				  <% end %>
+		    </li>
+		  <% end %>
+		</ul>
+
+		<%= will_paginate %>
+	</div>
+</div>
