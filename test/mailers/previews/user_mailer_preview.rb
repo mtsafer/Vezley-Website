@@ -13,4 +13,8 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.password_reset
   end
 
+  def contact_vezley
+    message = Contact.first
+    UserMailer.contact_vezley(message)
+  end
 end
