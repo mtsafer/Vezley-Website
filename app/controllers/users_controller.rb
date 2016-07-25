@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
 
 	def index
-		@users = User.where(activated: true, banned: false).paginate(page: params[:page])
+		if !logged_in?
+			flash[:warning] = "You must be logged in to view a profile"
+			redirect_to root_path
+		else
+			@users = User.where(activated: true, banned: false).paginate(page: params[:page])
+		end
 	end
 
 	def new
@@ -23,19 +28,16 @@ class UsersController < ApplicationController
 			end
 		else
 			flash[:danger] = "You can not edit someone else's profile"
-			redirect_to root_url
+			redirect_to root_path
 		end
 	end
 
 	def show
 		@user = User.find_by_id params[:id]
-		redirect_to root_url and return unless @user.activated?
+		redirect_to root_path and return unless @user.activated?
 		if !logged_in?
-			flash[:warning] = "You must be logged in to view your profile"
+			flash[:warning] = "You must be logged in to view a profile"
 			redirect_to root_path
-	  elsif current_user != @user
-				flash[:warning] = "You can only view your own profile"
-				redirect_to root_path
 		end
 	end
 
@@ -48,7 +50,7 @@ class UsersController < ApplicationController
       message = "Please check your email to activate your account."
       message += " This may take a minute, please be patient."
       flash[:info] = message
-      redirect_to root_url
+      redirect_to root_path
 		else
 			render :new
 		end
@@ -63,7 +65,7 @@ class UsersController < ApplicationController
 			redirect_to users_path
 		else
 			flash[:warning] = "Only mods can ban users."
-			redirect_to root_url
+			redirect_to root_path
 		end
 	end
 

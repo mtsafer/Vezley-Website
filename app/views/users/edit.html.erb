@@ -4,6 +4,11 @@
 	<br>
 	<div class="container-fluid">
     <div class="col-md-6 col-md-offset-3">
+
+    	<div class="gravatar_edit">
+	      <p><%= gravatar_for @user %>
+	      <a href="http://gravatar.com/emails" target="_blank" rel="noopener">change</a></p>
+	    </div>
 			<%= form_for @user, url: edit_user_path(@user) do |f| %>
 				<%= render 'shared/error_messages' %>
 

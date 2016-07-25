@@ -23,6 +23,6 @@ class UserMailer < ApplicationMailer
 
   def contact_vezley(message)
     @message = message
-    mail to: "mtsafer@gmail.com", subject: ""
+    mail to: "mtsafer@gmail.com", subject: "Fan Mail"
   end
 end

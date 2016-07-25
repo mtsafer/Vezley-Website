@@ -8,6 +8,10 @@
 		      <h1 class="title">
 		        <%= gravatar_for @user %>
 		        <%= @user.name %>
+			       <% if current_user && current_user.mod == 1 && current_user != @user %>
+					    | <%= link_to "ban", user_path(@user), method: :patch,
+					                                  data: { confirm: "You sure?" } %>
+					  <% end %>
 		      </h1>
 		    </section>
 		  </aside>

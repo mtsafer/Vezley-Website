@@ -13,12 +13,12 @@ class SessionsController < ApplicationController
     		redirect_to root_path
       elsif user.banned?
         flash[:warning] = "This account has been banned."
-        redirect_to root_url
+        redirect_to root_path
       else
         message  = "Account not activated. "
         message += "Check your email for the activation link."
         flash[:warning] = message
-        redirect_to root_url
+        redirect_to root_path
       end
   	else
   		flash.now[:danger] = "The email password combination did not match."

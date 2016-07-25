@@ -141,6 +141,17 @@ footer {
   p{
     text-align: left;
     margin: 10px 50px;
+
+    img {
+      margin-right: 20px;
+    }
+  }
+}
+
+.dropdown-menu {
+  .profile-name:hover {
+    background-color: white;
+    cursor: default;
   }
 }
 
@@ -173,6 +184,14 @@ a.forum:hover {
     transition: 0.2s;
   }
   text-decoration: none;
+}
+
+.gravatar_edit {
+  height: 80px;
+  margin-bottom: 20px;
+  p {
+    margin-left: 0;
+  }
 }
 
 .post .col-height {
@@ -222,6 +241,18 @@ a.forum:hover {
   }
 }
 
+.row-height {
+  .col-height {
+    .inside {
+      .content {
+        p {
+          margin-left: 0px;
+        }
+      }
+    }
+  }
+}
+
 .info.forum {
   .row-height {  
     .col-height {
@@ -233,6 +264,7 @@ a.forum:hover {
             font-size: 0.5em;
             margin: auto;
             padding-left: 15px;
+            margin-left: 0px;
           }
         }
       }
