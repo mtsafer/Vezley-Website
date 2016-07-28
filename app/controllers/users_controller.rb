@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 			end
 		else
 			flash[:danger] = "You can not edit someone else's profile"
-			redirect_to root_path
+			redirect_to root_url
 		end
 	end
 
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 		redirect_to root_path and return unless @user.activated?
 		if !logged_in?
 			flash[:warning] = "You must be logged in to view a profile"
-			redirect_to root_path
+			redirect_to root_url
 		end
 	end
 
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
       message = "Please check your email to activate your account."
       message += " This may take a minute, please be patient."
       flash[:info] = message
-      redirect_to root_path
+      redirect_to root_url
 		else
 			render :new
 		end
@@ -62,10 +62,36 @@ class UsersController < ApplicationController
 			@user.banned = true
 			@user.save
 			flash[:success] = "#{@user.name} has been banned. PURGE THE REBEL SCUM!"
-			redirect_to users_path
+			redirect_to users_url
 		else
 			flash[:warning] = "Only mods can ban users."
-			redirect_to root_path
+			redirect_to root_url
+		end
+	end
+
+	def mod
+		@user = User.find params[:id]
+		if current_user && current_user.owner == 1
+			@user.mod = 1
+			@user.save
+			flash[:success] = "#{@user.name} has been made a mod"
+			redirect_to users_url
+		else
+			flash[:warning] = "Only the owner can give mod privileges"
+			redirect_to root_url
+		end
+	end
+
+	def unmod
+		@user = User.find params[:id]
+		if current_user && current_user.owner == 1
+			@user.mod = 0
+			@user.save
+			flash[:success] = "#{@user.name} no longer has mod privileges"
+			redirect_to users_url
+		else
+			flash[:warning] = "Only the owner can remove mod privileges"
+			redirect_to root_url
 		end
 	end
 

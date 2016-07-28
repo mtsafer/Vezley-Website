@@ -30,6 +30,10 @@ Rails.application.routes.draw do
 
   get    'users/:id' 									=>  'users#show', as: :user
 
+  patch  'users/mod/:id'              =>  'users#mod', as: :mod_user
+
+  patch  'users/unmod/:id'            =>  'users#unmod', as: :unmod_user
+
   patch  'users/:id'                  =>  'users#ban'
 
   get    'users/:id/edit'             =>  'users#edit', as: :edit_user
