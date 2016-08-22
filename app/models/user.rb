@@ -2,17 +2,17 @@ class User < ApplicationRecord
 
 	attr_accessor :remember_token, :activation_token, :reset_token
   before_create :create_activation_digest
-	before_save { email.downcase! }
+	#before_save { email.downcase! }
 
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-	validates :name,  presence: true, length: {maximum: 50}
-	validates :email, presence: true, length: {maximum: 255},
-											format: {with: VALID_EMAIL_REGEX},
-									uniqueness: { case_sensitive: false }
-	validates :password, length: { minimum: 6 }, presence: true, allow_nil: true
+	#validates :name,  presence: true, length: {maximum: 50}
+	#validates :email, presence: true, length: {maximum: 255},
+	#										format: {with: VALID_EMAIL_REGEX},
+	#								uniqueness: { case_sensitive: false }
+	#validates :password, length: { minimum: 6 }, presence: true, allow_nil: true
 
-	has_secure_password
+	#has_secure_password
 
   has_many :posts
   has_many :comments, through: :posts
@@ -80,6 +80,16 @@ class User < ApplicationRecord
   # Returns true if a password reset has expired
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  def self.create_with_omniauth(auth)
+    create! do |user|
+      user.provider = auth["provider"]
+      user.uid = auth["uid"]
+      user.name = auth["info"]["name"]
+      user.email = auth["info"]["email"]
+      user.logo = auth["logo"]
+    end
   end
 
 end

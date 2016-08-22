@@ -26,6 +26,14 @@ class SessionsController < ApplicationController
   	end
   end
 
+  def create_omniauth
+    auth = request.env["omniauth.auth"]
+    user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
+    log_in user
+    flash[:success] = "Welcome, #{user.name}, to the Vezzelution!"
+    redirect_to root_path
+  end
+
   def destroy
   	flash[:success] = "You have been logged out"
   	logout if logged_in?

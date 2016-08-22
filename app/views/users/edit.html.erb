@@ -6,9 +6,11 @@
     <div class="col-md-6 col-md-offset-3">
 
     	<div class="gravatar_edit">
-	      <p><%= gravatar_for @user %>
-	      <a href="http://gravatar.com/emails" target="_blank" rel="noopener">change</a></p>
-	      <a data-toggle="modal" data-target="#myModal" class="pull-left"><span class="glyphicon glyphicon-question-sign about-gravatar"></span></a>
+	      <p><%= logo_for @user %>
+	      <% if @user.logo.nil? %>	
+	      	<a href="http://gravatar.com/emails" target="_blank" rel="noopener">change</a></p>
+	      	<a data-toggle="modal" data-target="#myModal" class="pull-left"><span class="glyphicon glyphicon-question-sign about-gravatar"></span></a>
+	      <% end %>
 					      <!-- Modal -->
 				<div id="myModal" class="modal fade" role="dialog">
 				  <div class="modal-dialog">
@@ -33,17 +35,17 @@
 			<%= form_for @user, url: edit_user_path(@user) do |f| %>
 				<%= render 'shared/error_messages' %>
 
-			  <%= f.label :name %>
-			  <%= f.text_field :name, class: 'form-control' %>
+			  <%#= f.label :name %>
+			  <%#= f.text_field :name, class: 'form-control' %>
 
 			  <%= f.label :email %>
 			  <%= f.text_field :email, class: 'form-control' %>
 
-				<%= f.label :password %>
-			  <%= f.password_field :password, class: 'form-control' %>
+				<%#= f.label :password %>
+			  <%#= f.password_field :password, class: 'form-control' %>
 
-			  <%= f.label :password_confirmation, "Confirmation" %>
-			  <%= f.password_field :password_confirmation, class: 'form-control' %>
+			  <%#= f.label :password_confirmation, "Confirmation" %>
+			  <%#= f.password_field :password_confirmation, class: 'form-control' %>
 
 			  <%= f.submit "Update", class: "btn btn-success" %>
 			<% end %>

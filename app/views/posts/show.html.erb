@@ -4,7 +4,7 @@
 			<div class="col-md-4 col-height user-info post-info">
 				<div class="inside">
 					<div class="content">
-						<p><%= gravatar_for @post.user %></p>
+						<p><%= logo_for @post.user %></p>
 						<p><%= link_to @post.user.name, user_path(@post.user) %></p>
 						<% if @post.user.owner == 1 %>
 							<p>Owner</p>
@@ -44,7 +44,7 @@
 					<div class="col-md-4 col-height user-info post-info">
 						<div class="inside">
 							<div class="content">
-								<p><%= gravatar_for c.user %></p>
+								<p><%= logo_for c.user %></p>
 								<p><%= link_to c.user.name, user_path(c.user) %></p>
 								<% if c.user.owner == 1 %>
 									<p>Owner</p>

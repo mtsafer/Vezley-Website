@@ -78,6 +78,8 @@ Rails.application.routes.draw do
 
   patch  'forum/:id/:closed/close'    =>  'posts#close', as: :close_comment
 
+  get    'auth/:provider/callback'    => 'sessions#create_omniauth'
+
   resources :account_activations, only: [:edit]
 
   resources :password_resets,     only: [:new, :create, :edit, :update]

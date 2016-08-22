@@ -6,13 +6,20 @@
 		  <aside class="col-md-4">
 		    <section class="user_info">
 		      <h1 class="title">
-		        <%= gravatar_for @user %>
+		        <%= logo_for @user %>
 		        <%= @user.name %>
 			       <% if current_user && current_user.mod == 1 && current_user != @user %>
 					    | <%= link_to "ban", user_path(@user), method: :patch,
 					                                  data: { confirm: "You sure?" } %>
 					  <% end %>
 		      </h1>
+		      <br>
+		      <br>
+		      <br>
+		      <p>email: <%= @user.email %></p>
+		      <p># of posts: <%= @user.posts.count %></p>
+		      <p># of comments: <%= @user.comments.count %></p>
+		      <p>status: <%= @status %></p>
 		    </section>
 		  </aside>
 		</div>

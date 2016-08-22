@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 			flash[:warning] = "You must be logged in to view a profile"
 			redirect_to root_path
 		else
-			@users = User.where(activated: true, banned: false).paginate(page: params[:page])
+			@users = User.where(banned: false).paginate(page: params[:page])
 		end
 	end
 
@@ -34,10 +34,17 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find_by_id params[:id]
-		redirect_to root_path and return unless @user.activated?
+		#redirect_to root_path and return unless @user.activated?
 		if !logged_in?
 			flash[:warning] = "You must be logged in to view a profile"
 			redirect_to root_url
+		end
+		if @user.owner == 1
+			@status = "Owner"
+		elsif @user.mod == 1
+			@status = "Moderator"
+		else
+			@status = "Viewer"
 		end
 	end
 
