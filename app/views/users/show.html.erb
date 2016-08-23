@@ -13,13 +13,13 @@
 					                                  data: { confirm: "You sure?" } %>
 					  <% end %>
 		      </h1>
-		      <br>
-		      <br>
-		      <br>
-		      <p>email: <%= @user.email %></p>
-		      <p># of posts: <%= @user.posts.count %></p>
-		      <p># of comments: <%= @user.comments.count %></p>
-		      <p>status: <%= @status %></p>
+
+		      <div class="user-stats">
+			      <p>email: <%= @user.email %></p>
+			      <p># of posts: <%= @user.posts.count %></p>
+			      <p># of comments: <%= @user.comments.count %></p>
+			      <p>status: <%= @status %></p>
+			    </div>
 		    </section>
 		  </aside>
 		</div>
