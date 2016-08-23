@@ -1,0 +1,2 @@
+module InfoBlocksHelper
+end

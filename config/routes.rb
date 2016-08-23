@@ -80,6 +80,10 @@ Rails.application.routes.draw do
 
   get    'auth/:provider/callback'    => 'sessions#create_omniauth'
 
+  get    'edit/info/:id'              => 'info_blocks#edit', as: :edit_info
+
+  patch  'edit/info/:id'              => 'info_blocks#update'
+
   resources :account_activations, only: [:edit]
 
   resources :password_resets,     only: [:new, :create, :edit, :update]

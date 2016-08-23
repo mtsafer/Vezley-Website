@@ -1,0 +1,2 @@
+class InfoBlock < ApplicationRecord
+end

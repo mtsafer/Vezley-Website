@@ -1,0 +1,10 @@
+<div class="info edit-block">	
+	<h1>Edit Info</h1>
+	<%=form_for @infoblock, url: "/edit/info/#{@infoblock.id}", method: :patch do |f|%>
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+		<%= f.label :body %>
+		<%= f.text_area :body %>
+		<%= f.submit "Update", class: "btn btn-primary" %>
+	<%end%>
+</div>

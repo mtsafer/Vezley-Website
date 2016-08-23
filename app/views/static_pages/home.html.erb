@@ -9,38 +9,12 @@
 	</a>
 <% end %>
 
-<div class="info schedule">
+<% @infoblocks.each do |info| %>
+	<div class="info <%=info.name%>">
 	<p></p>
-	<h1>Schedule</h1>
-	<p>--Generally around 6 EST--</p>
-	<p></p>
-	<p>Main Casts (95% chance of cast): Tuesday, Friday, Sunday</p>
-	<p></p>
-	<p>Possible Extra Casts (70% chance of cast): Wednesday, Saturday</p>
-	<p></p>
-	<p>Days off (15% chance of cast): Monday, Thursday</p>
+	<h1><%=info.title%></h1>
+	<p><%= simple_format info.body %></p>
 	<br>
-</div>
-
-<div class="info about">
-	<p></p>
-	<h1>about me</h1>
-	<p>My name is Vezley - I enjoy gaming and playing the piano along with a little anime on the side. I am unsure what my future holds but I plan to keep an open mind.</p>
-	<p></p>
-	<p>As for being a caster on twitch - I hope to at least get a quality button to ensure stability for all my viewers.</p>
-	<p></p>
-	<p>The Vezzelution - simply a revolution that I'm starting here on twitch. To fight against anything and everything in life that brings you down. I want you to come in here and know you have a family. The Vezzelution isn't about me, but about all of us as a whole - I simply started it.</p>
-	<br>
-</div>
-
-<div class="info about-website">
-	<p></p>
-	<h1>about vezley.tv</h1>
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<br>
-</div>
+	<%= link_to "edit", edit_info_path(info.id), class: "btn btn-primary" if !current_user.nil? &&current_user.owner == 1%>
+	</div>
+<% end %>
