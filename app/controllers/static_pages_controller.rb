@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @infoblocks = InfoBlock.where.not(name: "manifesto")
+    @infoblocks = InfoBlock.where.not(name: "manifesto").where.not(name: "donate").distinct
   end
 
   def manifesto
