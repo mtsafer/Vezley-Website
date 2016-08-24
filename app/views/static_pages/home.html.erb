@@ -1,20 +1,22 @@
-<% if !logged_in? %>	
-	<a href="<%='/auth/twitch'%>" class="forum">
-		<div class="info signup">
-			<h1>Sign in with Twitch</h1>
-			<h3 class="container-fluid">Post in the forums. Use the shop. Contact Vezley. </h3>
-			<h2 class="container-fluid">Click here to sign up now!</h2>
-			<br>
-		</div>
-	</a>
-<% end %>
+<div class="home">	
+	<% if !logged_in? %>	
+		<a href="<%='/auth/twitch'%>" class="forum">
+			<div class="info signup">
+				<h1>Sign in with Twitch</h1>
+				<h3 class="container-fluid">Post in the forums. Use the shop. Contact Vezley. </h3>
+				<h2 class="container-fluid">Click here to sign up now!</h2>
+				<br>
+			</div>
+		</a>
+	<% end %>
 
-<% @infoblocks.each do |info| %>
-	<div class="info <%=info.name%>">
-	<p></p>
-	<h1><%=info.title%></h1>
-	<p><%= simple_format info.body %></p>
-	<br>
-	<%= link_to "edit", edit_info_path(info.id), class: "btn btn-primary" if !current_user.nil? &&current_user.owner == 1%>
-	</div>
-<% end %>
+	<% @infoblocks.each do |info| %>
+		<div class="info <%=info.name%>">
+		<p></p>
+		<h1><%=info.title%></h1>
+		<p><%= simple_format info.body %></p>
+		<br>
+		<%= link_to "edit", edit_info_path(info.id), class: "btn btn-primary" if !current_user.nil? &&current_user.owner == 1%>
+		</div>
+	<% end %>
+</div>
