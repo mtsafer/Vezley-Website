@@ -5,9 +5,11 @@
 	<div class="links">
 		<%= link_to(image_tag("https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/945px-Twitter_bird_logo_2012.svg.png", class: 'media'), "https://twitter.com/VezleyVastion", class: 'twitter', target: '_blank')  %>
 
-		<%= link_to(image_tag("https://www.youtube.com/yt/brand/media/image/YouTube-logo-light.png", class: 'media'), "https://www.youtube.com/channel/UC5ZVDtR88rN2eaq93K0qgeg", class: 'youtube', target: '_blank')  %>
+		<%= link_to(image_tag("http://www.iconarchive.com/download/i58458/icontexto/social-inside/social-inside-youtube.ico", class: 'media'), "https://www.youtube.com/channel/UC5ZVDtR88rN2eaq93K0qgeg", class: 'youtube', target: '_blank')  %>
 
 		<%= link_to(image_tag("http://www.iconarchive.com/download/i75918/martz90/circle/steam.ico", class: 'media'), "http://steamcommunity.com/groups/Vezzelution", class: 'steam', target: '_blank')  %>
+		
+		<%= link_to(image_tag("https://lh3.googleusercontent.com/jgHA50UkErljsRAu97XzZYrRcg3eAE0qTHdpxqCWfcd2dn9x1eDkblhVoXVWfxTTJTsF=w300", class: 'media'), "https://discord.gg/0phhOFDAsKdaRNGu", class: 'discord', target: '_blank')  %>
 	</div>
 	<br>
 	<div class="container-fluid">
@@ -16,7 +18,7 @@
 				<%= form_for @contact do |f| %>
 					<%= render 'shared/error_messages_contacts' %>
 
-				  <%= f.label 'Send a Message' %>
+				  <%= f.label 'Send a one-way email' %>
 				  <%= f.text_area :message, class: 'form-control form-field' %>
 
 				  <%= f.submit "Send Message", class: "btn btn-success" %>
