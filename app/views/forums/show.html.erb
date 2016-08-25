@@ -1,3 +1,4 @@
+<% provide(:title, "Forum") %>
 <% if @subject.class == Subject::ActiveRecord_Relation %>	
 	<% @subject.each do |s| %>
 		<div class="info forum">

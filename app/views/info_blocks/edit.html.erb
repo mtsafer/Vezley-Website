@@ -1,3 +1,4 @@
+<% provide(:title, "Edit Info") %>
 <div class="info edit-block">	
 	<h1>Edit Info</h1>
 	<%=form_for @infoblock, url: "/edit/info/#{@infoblock.id}", method: :patch do |f|%>
