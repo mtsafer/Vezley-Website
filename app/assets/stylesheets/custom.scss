@@ -15,6 +15,7 @@ $gray-medium-light: #eaeaea;
 
 html {
   overflow-y: scroll;
+  height: 100%;
 }
 
 .info .user-stats p {
@@ -46,6 +47,9 @@ body {
   background: url("http://wallpaperlayer.com/img/2015/3/star-5499-5758-hd-wallpapers.jpg") no-repeat center center fixed;
   background-size: cover;
   text-shadow: 1px 1px black;
+  height: auto;
+  min-height: 100%;
+
 }
 
 section {
@@ -127,6 +131,14 @@ footer {
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
   color: $gray-light;
+
+  clear: both;
+  position: relative;
+  bottom: 0;
+  z-index: 10;
+  height: 3em;
+  margin-top: -3em;
+
   a {
     color: $gray;
     &:hover {
@@ -299,6 +311,7 @@ li.post{
 }
 
 .info.forum {
+  margin-bottom: 15px;
   .row-height {  
     .col-height {
       .inside {
@@ -692,4 +705,25 @@ aside {
   .col-lg-bottom {
     vertical-align: bottom;
   }
+}
+
+/* 3rd party */
+
+html,
+body {
+  height:100%;
+}
+.container {
+  min-height:100%;
+  position:relative;
+}
+.content {
+  padding-bottom:30px; /* Height of the footer element */
+}
+footer {
+  width:100%;
+  height:30px;
+  position:absolute;
+  bottom:0;
+  left:0;
 }
