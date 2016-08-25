@@ -39,6 +39,8 @@ body {
   padding-top: 60px;
   background-color: #19171c;
   text-align: center;
+  background: url("http://wallpaperlayer.com/img/2015/3/star-5499-5758-hd-wallpapers.jpg") no-repeat center center fixed;
+  background-size: cover;
 }
 
 section {
@@ -147,7 +149,7 @@ footer {
 
 .info {
   color: #999;
-  background-color: rgb(30,30,30);
+  background-color: rgba(30,30,30,0.7);
   border-radius: 15px;
   box-shadow: 2px 2px 1px black; 
   h1 {
@@ -161,6 +163,8 @@ footer {
   p{
     text-align: left;
     margin: 10px 50px;
+
+    text-shadow: 1px 1px black;
 
     img {
       margin-right: 20px;
