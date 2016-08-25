@@ -15,7 +15,7 @@ class User < ApplicationRecord
 	#has_secure_password
 
   has_many :posts
-  has_many :comments, through: :posts
+  has_many :comments
   has_many :contacts
 
 	# Returns a digested hashing of the given string
