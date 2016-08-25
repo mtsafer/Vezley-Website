@@ -1,8 +1,8 @@
 <% provide(:title, "Manifesto") %>
 <div class="info manifesto">
 	<p></p>
-	<h1><%=@infoblock.title%></h1>
-		<p><%=simple_format @infoblock.body%></p>
+	<h1 style=<%="color:#{@infoblock.title_color};" if @infoblock.title_color %> ><%=@infoblock.title%></h1>
+		<p><%=simple_format @infoblock.body, style: "color:#{@infoblock.body_color};"%></p>
 	<br>
 	<%= link_to "edit", edit_info_path(@infoblock.id), class: "btn btn-primary" if !current_user.nil? &&current_user.owner == 1%>
 </div>

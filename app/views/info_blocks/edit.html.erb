@@ -4,8 +4,10 @@
 	<%=form_for @infoblock, url: "/edit/info/#{@infoblock.id}", method: :patch do |f|%>
 		<%= f.label :title %>
 		<%= f.text_field :title %>
+		<%= f.color_field :title_color %>
 		<%= f.label :body %>
 		<%= f.text_area :body %>
+		<%= f.color_field :body_color %>
 		<%= f.submit "Update", class: "btn btn-primary" %>
 	<%end%>
 </div>

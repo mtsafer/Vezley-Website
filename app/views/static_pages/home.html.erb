@@ -13,8 +13,8 @@
 	<% @infoblocks.each do |info| %>
 		<div class="info <%=info.name%>">
 		<p></p>
-		<h1><%=info.title%></h1>
-		<p><%= simple_format info.body %></p>
+		<h1 style=<%="color:#{info.title_color};" if info.title_color %>><%=info.title%></h1>
+		<p><%= simple_format info.body, style: "color:#{info.body_color};" %></span></p>
 		<br>
 		<%= link_to "edit", edit_info_path(info.id), class: "btn btn-primary" if !current_user.nil? &&current_user.owner == 1%>
 		</div>

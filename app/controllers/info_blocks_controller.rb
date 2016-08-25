@@ -13,7 +13,7 @@ class InfoBlocksController < ApplicationController
 	private
 
 	def whitelist
-		params.require(:info_block).permit(:title, :body)
+		params.require(:info_block).permit(:title, :body, :title_color, :body_color)
 	end
 
 end

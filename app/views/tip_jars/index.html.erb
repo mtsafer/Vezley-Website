@@ -1,8 +1,8 @@
 <% provide(:title, "Tipjar") %>
 <div class="info donate">
 	<p></p>
-	<h1><%= @infoblock.title %></h1>
-	<p><%= simple_format @infoblock.body %></p>
+	<h1 style=<%="color:#{@infoblock.title_color};" if @infoblock.title_color %> ><%=@infoblock.title%></h1>
+		<p><%=simple_format @infoblock.body, style: "color:#{@infoblock.body_color};"%></p>
 	<%= link_to "edit", edit_info_path(@infoblock.id), class: "btn btn-primary" if !current_user.nil? &&current_user.owner == 1%>
 	<h1>Important! Read this!</h1>
 	<h2>Currently, the donate button links to <b>Martin Safer's</b> paypal (aka Mount Safurious), NOT Vezley's. If you would like to donate to the creator of this website (Martin Safer), feel free to do so, it would be greatly appreciated.</h2>

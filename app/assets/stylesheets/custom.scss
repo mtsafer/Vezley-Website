@@ -168,7 +168,9 @@ footer {
   color: #999;
   background-color: rgba(30,30,30,0.7);
   border-radius: 15px;
-  box-shadow: 2px 2px 1px black; 
+  box-shadow: 2px 2px 1px black;
+  margin-bottom: 30px; 
+  padding-top: 1px;
   h1 {
     margin-top: 40px;
     margin-left: 20px;
@@ -180,7 +182,7 @@ footer {
   p{
     text-align: left;
     margin: 10px 50px;
-
+    color: white;
     text-shadow: 1px 1px black;
 
     img {
@@ -311,7 +313,6 @@ li.post{
 }
 
 .info.forum {
-  margin-bottom: 15px;
   .row-height {  
     .col-height {
       .inside {
