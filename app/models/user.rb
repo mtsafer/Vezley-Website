@@ -92,4 +92,9 @@ class User < ApplicationRecord
     end
   end
 
+  def self.update_pic(image)
+    self.logo = image
+    self.save
+  end
+
 end
