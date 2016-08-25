@@ -214,7 +214,7 @@ select.subjects {
 
 a.forum:hover {
   .info{
-    background-color: #4d4d4d;
+    background-color: rgba(77,77,77,0.5);
     transition: 0.2s;
   }
   text-decoration: none;
@@ -248,12 +248,12 @@ a.forum:hover {
 }
 
 li.post{
-  border: 2px solid black;
+  border: 2px solid rgba(0,0,0,0.5);
 }
 
 .center-info{
-  border-left: 2px solid black;
-  border-right: 2px solid black;
+  border-left: 2px solid rgba(0,0,0,0.5);
+  border-right: 2px solid rgba(0,0,0,0.5);
 }
 
 .stats{
@@ -354,12 +354,12 @@ li.post{
     text-align: left;
     list-style: none;
     font-size: 1.5em;
-    background-color: #272727;
+    background-color: rgba(39,39,39,0.5);
     margin: 2px 0;
   }
 
   li:hover{
-    background-color: #4d4d4d;
+    background-color: rgba(77,77,77,0.5);
     transition: 0.2s;
   }
 

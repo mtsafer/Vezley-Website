@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
   def create_omniauth
     auth = request.env["omniauth.auth"]
     user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
-    user.update_pic(auth["info"]["image"])
+    user.update_pic(auth["info"]["image"]) if auth["info"]["image"] != user.logo
     if !user.banned?
       flash[:success] = "Welcome, #{user.name}, to the Vezzelution!"
       log_in user

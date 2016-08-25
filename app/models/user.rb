@@ -93,8 +93,9 @@ class User < ApplicationRecord
   end
 
   def self.update_pic(image)
-    self.logo = image
-    self.save
+    update! do |user|
+      user.logo = image
+    end
   end
 
 end
