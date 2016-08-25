@@ -88,7 +88,7 @@ class User < ApplicationRecord
       user.uid = auth["uid"]
       user.name = auth["info"]["name"]
       user.email = auth["info"]["email"]
-      user.logo = auth["logo"]
+      user.logo = auth["info"]["image"]
     end
   end
 

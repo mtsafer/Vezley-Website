@@ -29,9 +29,14 @@ class SessionsController < ApplicationController
   def create_omniauth
     auth = request.env["omniauth.auth"]
     user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
-    log_in user
-    flash[:success] = "Welcome, #{user.name}, to the Vezzelution!"
-    redirect_to root_path
+    if !user.banned?
+      flash[:success] = "Welcome, #{user.name}, to the Vezzelution!"
+      log_in user
+      redirect_to root_path
+    else
+      flash[:warning] = "This account has been banned."
+      redirect_to root_path
+    end
   end
 
   def destroy

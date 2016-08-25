@@ -13,6 +13,10 @@ $gray-medium-light: #eaeaea;
   box-sizing:         border-box;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 .info .user-stats p {
   margin-left: 120px;
 }
