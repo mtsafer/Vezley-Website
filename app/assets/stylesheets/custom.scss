@@ -41,6 +41,7 @@ body {
   text-align: center;
   background: url("http://wallpaperlayer.com/img/2015/3/star-5499-5758-hd-wallpapers.jpg") no-repeat center center fixed;
   background-size: cover;
+  text-shadow: 1px 1px black;
 }
 
 section {
@@ -221,12 +222,7 @@ a.forum:hover {
   }
 }
 
-.post .col-height {
-  border: 2px solid #19171c;
-}
-
 .user-info {
-  border-right: 1px solid black;
   .content {
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -236,6 +232,19 @@ a.forum:hover {
       text-align: left;
     }
   }
+}
+
+.post-show .user-info{
+  border-right: 1px solid black;
+}
+
+li.post{
+  border: 2px solid black;
+}
+
+.center-info{
+  border-left: 2px solid black;
+  border-right: 2px solid black;
 }
 
 .stats{
