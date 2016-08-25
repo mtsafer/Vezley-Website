@@ -1,54 +1,61 @@
-<div class="info new-user">
-	<p></p>
-	<h1>Edit Profile</h1>
-	<br>
-	<div class="container-fluid">
-    <div class="col-md-6 col-md-offset-3">
+<div class="edit-user">	
+	<div class="info new-user">
+		<p></p>
+		<h1>Edit Profile</h1>
+		<br>
+		<div class="container-fluid">
+	    <div class="col-md-6 col-md-offset-3">
 
-    	<div class="gravatar_edit">
-	      <p><%= logo_for @user %>
-	      <% if @user.logo.nil? %>	
-	      	<a href="http://gravatar.com/emails" target="_blank" rel="noopener">change</a></p>
-	      	<a data-toggle="modal" data-target="#myModal" class="pull-left"><span class="glyphicon glyphicon-question-sign about-gravatar"></span></a>
-	      <% end %>
-					      <!-- Modal -->
-				<div id="myModal" class="modal fade" role="dialog">
-				  <div class="modal-dialog">
+	    	<div class="gravatar_edit">
+		      <p><%= logo_for @user %>
+		      <% if @user.logo.nil? %>	
+		      	<a href="http://gravatar.com/emails" target="_blank" rel="noopener">change</a></p>
+		      	<a data-toggle="modal" data-target="#myModal" class="pull-left"><span class="glyphicon glyphicon-question-sign about-gravatar"></span></a>
+		      <% end %>
+						      <!-- Modal -->
+					<div id="myModal" class="modal fade" role="dialog">
+					  <div class="modal-dialog">
 
-				    <!-- Modal content-->
-				    <div class="modal-content">
-				      <div class="modal-header">
-				        <button type="button" class="close" data-dismiss="modal">&times;</button>
-				        <h4 class="modal-title">What is a gravatar</h4>
-				      </div>
-				      <div class="modal-body">
-				        <p>Gravatar stands for Globally Recognized Avatar. It is globally recognized because millions of people and websites use them. Most popular applications like WordPress have built-in support for Gravatar. When a user leaves a comment (with email) on a site that supports Gravatar, it pulls their Globally Recognized Avatar from Gravatar servers. Then that picture is shown next to the comment. This allows each commenter to have their identity through out the world wide web.</p>
-				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				      </div>
-				    </div>
+					    <!-- Modal content-->
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        <h4 class="modal-title">What is a gravatar</h4>
+					      </div>
+					      <div class="modal-body">
+					        <p>Gravatar stands for Globally Recognized Avatar. It is globally recognized because millions of people and websites use them. Most popular applications like WordPress have built-in support for Gravatar. When a user leaves a comment (with email) on a site that supports Gravatar, it pulls their Globally Recognized Avatar from Gravatar servers. Then that picture is shown next to the comment. This allows each commenter to have their identity through out the world wide web.</p>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					      </div>
+					    </div>
 
-				  </div>
-				</div>
-	    </div>
-			<%= form_for @user, url: edit_user_path(@user) do |f| %>
-				<%= render 'shared/error_messages' %>
+					  </div>
+					</div>
+		    </div>
+				<%= form_for @user, url: edit_user_path(@user) do |f| %>
+					<%= render 'shared/error_messages' %>
 
-			  <%#= f.label :name %>
-			  <%#= f.text_field :name, class: 'form-control' %>
+				  <%#= f.label :name %>
+				  <%#= f.text_field :name, class: 'form-control' %>
 
-			  <%= f.label :email %>
-			  <%= f.text_field :email, class: 'form-control' %>
+				  <%= f.label :email %>
+				  <%= f.text_field :email, class: 'form-control' %>
 
-				<%#= f.label :password %>
-			  <%#= f.password_field :password, class: 'form-control' %>
+				  <%= f.label :public_profile, class: "checkbox" do %>
+				  <%= f.check_box :public_profile %>
+				  <span class="check-label">Make my email public</span>
+				  <% end %>
 
-			  <%#= f.label :password_confirmation, "Confirmation" %>
-			  <%#= f.password_field :password_confirmation, class: 'form-control' %>
+					<%#= f.label :password %>
+				  <%#= f.password_field :password, class: 'form-control' %>
 
-			  <%= f.submit "Update", class: "btn btn-success" %>
-			<% end %>
+				  <%#= f.label :password_confirmation, "Confirmation" %>
+				  <%#= f.password_field :password_confirmation, class: 'form-control' %>
+
+				  <%= f.submit "Update", class: "btn btn-success" %>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>
