@@ -123,7 +123,7 @@ class User < ApplicationRecord
     elsif mod == 1
       "http://www.iconarchive.com/download/i91290/icons8/windows-8/Military-Sword.ico"
     else
-      "http://image.flaticon.com/icons/png/512/27/27825.png"
+      "http://www.clker.com/cliparts/s/I/Q/p/d/U/black-person-symbol-hi.png"
     end
   end
 
