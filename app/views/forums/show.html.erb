@@ -10,12 +10,12 @@
 
 				
 				<li class="post">
-					<div class="btn-group dropup">
-					<button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu list-inline">
-						<% if current_user && current_user.mod == 1 || current_user == post.user %>
+					<% if current_user && current_user.mod == 1 || current_user == post.user %>
+							<div class="btn-group dropup">
+							<button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu list-inline">
 								<% if current_user == post.user %>
 						  		<li><%= link_to "Edit", "/forum/#{post.id}/edit", class: "btn btn-primary" %></li>
 						  	<% end %>
@@ -27,10 +27,9 @@
 							  	<li><%= link_to "Open", close_comment_path(post.id,0), method: :patch, class: "btn btn-success" %></li>
 							  <% end %>
 							  <li><%= link_to "Delete", post_path(@subject.name,post.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %></li>
-					 <% end %>
-					</ul>
-				</div>
-
+							</ul>
+						</div>
+					<% end %>
 					<a class="post-link" href="<%="#{@subject.name}/#{post.id}"%>">
 						<div class="container-fluid">	
 							<div class="row test">
@@ -87,12 +86,13 @@
 		<% @forums.each do |post| %>
 			<ul class="posts">
 				<li class="post">
-					<div class="btn-group dropup">
-					<button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu list-inline">
-						<% if current_user && current_user.mod == 1 || current_user == post.user %>
+				
+					<% if current_user && current_user.mod == 1 || current_user == post.user %>
+							<div class="btn-group dropup">
+							<button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu list-inline">
 								<% if current_user == post.user %>
 						  		<li><%= link_to "Edit", "/forum/#{post.id}/edit", class: "btn btn-primary" %></li>
 						  	<% end %>
@@ -104,9 +104,9 @@
 							  	<li><%= link_to "Open", close_comment_path(post.id,0), method: :patch, class: "btn btn-success" %></li>
 							  <% end %>
 							  <li><%= link_to "Delete", post_path(@subject.name,post.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %></li>
-					 <% end %>
-					</ul>
-				</div>
+							</ul>
+						</div>
+					<% end %>
 
 					<a class="post-link" href="<%="#{@subject.name}/#{post.id}"%>">
 						<div class="container-fluid">	
