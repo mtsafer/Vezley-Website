@@ -7,70 +7,68 @@
 			<% @forums.each do |post| %>
 				<ul class="posts">
 					<% if post.subject == s %>
-						<div class="tool-buttons">
-					<% if current_user && current_user.mod == 1 || current_user == post.user %>
+
+				
+				<li class="post">
+					<div class="btn-group dropup">
+					<button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu list-inline">
+						<% if current_user && current_user.mod == 1 || current_user == post.user %>
 								<% if current_user == post.user %>
-						  		<%= link_to "Edit", "/forum/#{post.id}/edit", class: "btn btn-primary" %>
+						  		<li><%= link_to "Edit", "/forum/#{post.id}/edit", class: "btn btn-primary" %></li>
 						  	<% end %>
 					  		<% if current_user && current_user.mod == 1 %>
-							  	<%= link_to "Sticky", sticky_comment_path(post.id,1), method: :patch, class: "btn btn-success" %>
-							  	<%= link_to "Unsticky", sticky_comment_path(post.id,0), method: :patch, class: "btn btn-warning" %>
-							  	<%= link_to "Move", move_path(post.id), class: "btn btn-success" %>
-							  	<%= link_to "Close", close_comment_path(post.id,1), method: :patch, class: "btn btn-warning" %>
-							  	<%= link_to "Open", close_comment_path(post.id,0), method: :patch, class: "btn btn-success" %>
+							  	<li><%= link_to "Sticky", sticky_comment_path(post.id,1), method: :patch, class: "btn btn-success" %></li>
+							  	<li><%= link_to "Unsticky", sticky_comment_path(post.id,0), method: :patch, class: "btn btn-warning" %></li>
+							  	<li><%= link_to "Move", move_path(post.id), class: "btn btn-success" %></li>
+							  	<li><%= link_to "Close", close_comment_path(post.id,1), method: :patch, class: "btn btn-warning" %></li>
+							  	<li><%= link_to "Open", close_comment_path(post.id,0), method: :patch, class: "btn btn-success" %></li>
 							  <% end %>
-							  <%= link_to "Delete", post_path(@subject.name,post.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
-					  	<% end %>
-			  </div>
-				<a class="post-link" href="<%="#{@subject.name}/#{post.id}"%>">
-					<li class="post">
-						<div class="row">
-							<div class="row-height">
-								<div class="col-md-5 col-sm-4 col-height user-info side-info">
-									<div class="inside">
-										<div class="content">
-											
-											<p class="icons">
-										  	<% if post.sticky == 1 %>
-										  		<span class="glyphicon glyphicon glyphicon-pushpin"> </span>
-										  	<% end %>
-										  	<% if post.closed == 1 %>
-										  		<span class="glyphicon glyphicon-lock"> </span>
-										  	<% end %>
-										  </p>
-										  <p class="title">
-										  	<%=post.title%>
-										  </p>
-										</div>
+							  <li><%= link_to "Delete", post_path(@subject.name,post.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %></li>
+					 <% end %>
+					</ul>
+				</div>
+
+					<a class="post-link" href="<%="#{@subject.name}/#{post.id}"%>">
+						<div class="container-fluid">	
+							<div class="row test">
+								<div class="col-md-4 col-sm-3 col-xs-3 test-left">
+									<div class="test-wrapper">
+										<div class="icons">
+									  	<% if post.sticky == 1 %>
+									  		<span class="glyphicon glyphicon glyphicon-pushpin"> </span>
+									  	<% end %>
+									  	<% if post.closed == 1 %>
+									  		<span class="glyphicon glyphicon-lock"> </span>
+									  	<% end %>
+									  </div>
+										<p><%= post.title %></p>
 									</div>
 								</div>
-								<div class="col-md-5 col-sm-6 col-height center-info">
-									<div class="inside">
-										<div class="content">
-										<div class="stats">
-											<p><%= post.user.name %></p>
+								<div class="col-md-5 col-sm-6 col-xs-6 test-mid">
+									<div class="test-wrapper">
+										<p><%= post.user.name %></p>
 											<p>Posted: <%= post.created_at.strftime("%-m/%-e/%-y") %></p>
 											<% recent = post %>
 											<% post.comments.each do |c| %>
 												<% recent = c if c.updated_at > recent.updated_at %>
 											<% end %>
 											<p>Recent Activity: <%= recent.updated_at.strftime("%-m/%-e/%-y") %></p>
-										</div>
-										</div>
 									</div>
 								</div>
-								<div class="col-md-2 col-height side-info">
-									<div class="inside">
-										<div class="content">
-					
+								<div class="col-sm-2 col-xs-2 test-right">
+									<div class="test-wrapper">	
 										<p>Comments: <%= post.comments.count %></p>
-										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</li>
-				</a>
+					</a>
+				</li>
+			
+
 					<% end %>
 				</ul>
 			<% end %>
@@ -88,70 +86,64 @@
 
 		<% @forums.each do |post| %>
 			<ul class="posts">
-				<div class="tool-buttons">
-					<% if current_user && current_user.mod == 1 || current_user == post.user %>
+				<li class="post">
+					<div class="btn-group dropup">
+					<button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu list-inline">
+						<% if current_user && current_user.mod == 1 || current_user == post.user %>
 								<% if current_user == post.user %>
-						  		<%= link_to "Edit", "/forum/#{post.id}/edit", class: "btn btn-primary" %>
+						  		<li><%= link_to "Edit", "/forum/#{post.id}/edit", class: "btn btn-primary" %></li>
 						  	<% end %>
 					  		<% if current_user && current_user.mod == 1 %>
-							  	<%= link_to "Sticky", sticky_comment_path(post.id,1), method: :patch, class: "btn btn-success" %>
-							  	<%= link_to "Unsticky", sticky_comment_path(post.id,0), method: :patch, class: "btn btn-warning" %>
-							  	<%= link_to "Move", move_path(post.id), class: "btn btn-success" %>
-							  	<%= link_to "Close", close_comment_path(post.id,1), method: :patch, class: "btn btn-warning" %>
-							  	<%= link_to "Open", close_comment_path(post.id,0), method: :patch, class: "btn btn-success" %>
+							  	<li><%= link_to "Sticky", sticky_comment_path(post.id,1), method: :patch, class: "btn btn-success" %></li>
+							  	<li><%= link_to "Unsticky", sticky_comment_path(post.id,0), method: :patch, class: "btn btn-warning" %></li>
+							  	<li><%= link_to "Move", move_path(post.id), class: "btn btn-success" %></li>
+							  	<li><%= link_to "Close", close_comment_path(post.id,1), method: :patch, class: "btn btn-warning" %></li>
+							  	<li><%= link_to "Open", close_comment_path(post.id,0), method: :patch, class: "btn btn-success" %></li>
 							  <% end %>
-							  <%= link_to "Delete", post_path(@subject.name,post.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
-					  	<% end %>
-			  </div>
-				<a class="post-link" href="<%="#{@subject.name}/#{post.id}"%>">
-					<li class="post">
-						<div class="row">
-							<div class="row-height">
-								<div class="col-md-6 col-sm-4 col-height user-info side-info">
-									<div class="inside">
-										<div class="content">
-											
-											<p class="icons">
-										  	<% if post.sticky == 1 %>
-										  		<span class="glyphicon glyphicon glyphicon-pushpin"> </span>
-										  	<% end %>
-										  	<% if post.closed == 1 %>
-										  		<span class="glyphicon glyphicon-lock"> </span>
-										  	<% end %>
-										  </p>
-										  <p class="title">
-										  	<%=post.title%>
-										  </p>
-										</div>
+							  <li><%= link_to "Delete", post_path(@subject.name,post.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %></li>
+					 <% end %>
+					</ul>
+				</div>
+
+					<a class="post-link" href="<%="#{@subject.name}/#{post.id}"%>">
+						<div class="container-fluid">	
+							<div class="row test">
+								<div class="col-md-4 col-sm-3 col-xs-3 test-left">
+									<div class="test-wrapper">
+										<div class="icons">
+									  	<% if post.sticky == 1 %>
+									  		<span class="glyphicon glyphicon glyphicon-pushpin"> </span>
+									  	<% end %>
+									  	<% if post.closed == 1 %>
+									  		<span class="glyphicon glyphicon-lock"> </span>
+									  	<% end %>
+									  </div>
+										<p><%= post.title %></p>
 									</div>
 								</div>
-								<div class="col-md-4 col-sm-6 col-height center-info">
-									<div class="inside">
-										<div class="content">
-										<div class="stats">
-											<p><%= post.user.name %></p>
+								<div class="col-md-5 col-sm-6 col-xs-6 test-mid">
+									<div class="test-wrapper">
+										<p><%= post.user.name %></p>
 											<p>Posted: <%= post.created_at.strftime("%-m/%-e/%-y") %></p>
 											<% recent = post %>
 											<% post.comments.each do |c| %>
 												<% recent = c if c.updated_at > recent.updated_at %>
 											<% end %>
 											<p>Recent Activity: <%= recent.updated_at.strftime("%-m/%-e/%-y") %></p>
-										</div>
-										</div>
 									</div>
 								</div>
-								<div class="col-md-2 col-height side-info">
-									<div class="inside">
-										<div class="content">
-										
+								<div class="col-sm-2 col-xs-2 test-right">
+									<div class="test-wrapper">	
 										<p>Comments: <%= post.comments.count %></p>
-										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</li>
-				</a>
+					</a>
+				</li>
 			</ul>
 		<% end %>
 		<%= link_to "Start a Thread", "#{@subject.name}/new", class: "btn btn-success"  %>
