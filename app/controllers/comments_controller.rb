@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
 			end
 		else
 			flash[:warning] = "You must be logged in to post on the forum"
-	    redirect_to login_path # halts request cycle
+	    redirect_to "/forum/#{params[:subject]}/#{params[:id]}"
 		end
 	end
 
