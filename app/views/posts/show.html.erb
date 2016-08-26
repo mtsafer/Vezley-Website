@@ -8,13 +8,7 @@
 						<div class="content">
 							<p><%= logo_for @post.user %></p>
 							<p><%= link_to @post.user.name, user_path(@post.user) %></p>
-							<% if @post.user.owner == 1 %>
-								<p>Owner</p>
-							<% elsif @post.user.mod == 1 %>
-								<p>Moderator</p>
-							<% else %>
-								<p>Viewer</p>
-							<% end %>
+							<p><%= @post.user.status %></p>
 							<p>Joined: <%=@post.user.created_at.strftime("%-m/%-d/%-y")%></p>
 							<p>Posted: <%=@post.created_at.strftime("%-m/%-d/%-y")%></p>
 						</div>
@@ -57,13 +51,7 @@
 					  			</div>
 									<p><%= logo_for c.user %></p>
 									<p><%= link_to c.user.name, user_path(c.user) %></p>
-									<% if c.user.owner == 1 %>
-										<p>Owner</p>
-									<% elsif c.user.mod == 1 %>
-										<p>Moderator</p>
-									<% else %>
-										<p>Viewer</p>
-									<% end %>
+									<p><%= c.user.status %></p>
 									<p>Joined: <%=c.user.created_at.strftime("%-m/%-e/%-y")%></p>
 									<p>Posted: <%=c.created_at.strftime("%-m/%-e/%-y, %l:%M %p")%></p>
 									<% if c.updated_at != c.created_at %>

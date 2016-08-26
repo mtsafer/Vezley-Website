@@ -15,15 +15,21 @@ class UsersController < ApplicationController
 
 	def edit
 		@user = User.find params[:id]
+		@status = @user.status
 	end
 
 	def update
 		@user = User.find params[:id]
 		if current_user && current_user == @user
-			if @user.update user_params
-				flash[:success] = "Profile updated"
-				redirect_to user_path(@user)
+			if @user.allow_or_deny_custom_status
+				if @user.update user_params
+					flash[:success] = "Profile updated"
+					redirect_to user_path(@user)
+				else
+					render :edit
+				end
 			else
+				flash[:danger] = "You must constuct additional pylons!"
 				render :edit
 			end
 		else
@@ -38,13 +44,6 @@ class UsersController < ApplicationController
 		if !logged_in?
 			flash[:warning] = "You must be logged in to view a profile"
 			redirect_to root_url
-		end
-		if @user.owner == 1
-			@status = "Owner"
-		elsif @user.mod == 1
-			@status = "Moderator"
-		else
-			@status = "Viewer"
 		end
 	end
 
@@ -105,7 +104,8 @@ class UsersController < ApplicationController
 	private
 
 		def user_params
-			params.require(:user).permit(:name, :email, :password, :password_confirmation, :public_profile)
+			params.require(:user).permit(:name, :email, :password,
+										 :password_confirmation, :public_profile, :custom_status)
 		end
 
 end

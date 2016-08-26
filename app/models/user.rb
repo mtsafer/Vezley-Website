@@ -2,6 +2,7 @@ class User < ApplicationRecord
 
 	attr_accessor :remember_token, :activation_token, :reset_token
   before_create :create_activation_digest
+  before_update :allow_or_deny_custom_status
 	#before_save { email.downcase! }
 
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -94,6 +95,22 @@ class User < ApplicationRecord
 
   def update_pic(image)
     update_attribute(:logo, image)
+  end
+
+  def status
+    if custom_status
+      custom_status
+    elsif owner == 1
+      "Owner"
+    elsif mod == 1
+      "Moderator"
+    else
+      "viewer"
+    end
+  end
+
+  def allow_or_deny_custom_status
+    (posts.count + comments.count) >= 15 || owner == 1 || mod == 1 || name.downcase == "mountsafurious"
   end
 
 end
