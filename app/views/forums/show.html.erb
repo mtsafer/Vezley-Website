@@ -29,6 +29,12 @@
 							  <li><%= link_to "Delete", post_path(@subject.name,post.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %></li>
 							</ul>
 						</div>
+					<% else %>
+						<div class="filler-block dropup">
+							<button class="btn btn-xs">
+								
+							</button>
+						</div>
 					<% end %>
 					<a class="post-link" href="<%="#{@subject.name}/#{post.id}"%>">
 						<div class="container-fluid">	
@@ -86,7 +92,7 @@
 		<% @forums.each do |post| %>
 			<ul class="posts">
 				<li class="post">
-				
+
 					<% if current_user && current_user.mod == 1 || current_user == post.user %>
 							<div class="btn-group dropup">
 							<button type="button" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -106,6 +112,8 @@
 							  <li><%= link_to "Delete", post_path(@subject.name,post.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %></li>
 							</ul>
 						</div>
+					<% else %>
+						<div class="filler-block"></div>
 					<% end %>
 
 					<a class="post-link" href="<%="#{@subject.name}/#{post.id}"%>">
