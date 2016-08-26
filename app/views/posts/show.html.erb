@@ -40,12 +40,21 @@
 	</div>
 		<% @posts.each do |c| %>
 			<div class="info comment">
-				<h1></h1>
 				<div class="row">
 					<div class="row-height">
 						<div class="col-md-4 col-height user-info post-info">
 							<div class="inside">
 								<div class="content">
+									<div class="tool-buttons">
+										<% if current_user %>
+											<% if current_user.mod == 1 || current_user == c.user %>
+									  		<% if current_user == c.user%>
+									  			<%= link_to "Edit", edit_comment_path(@post.subject.name,c.id), class: "btn btn-primary" %>
+									  		<% end %>
+										  	<%= link_to "Delete", delete_comment_path(@post.subject.name,c.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+									  	<% end %>
+									  <% end %>
+					  			</div>
 									<p><%= logo_for c.user %></p>
 									<p><%= link_to c.user.name, user_path(c.user) %></p>
 									<% if c.user.owner == 1 %>
@@ -63,20 +72,10 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-8 col-height">
+						<div class="col-md-8 col-height comment-body">
 							<div class="inside">
 								<div class="content">
 									<p><%= simple_format c.body %></p>
-									<div class="tool-buttons">
-										<% if current_user %>
-											<% if current_user.mod == 1 || current_user == c.user %>
-									  		<% if current_user == c.user%>
-									  			<%= link_to "Edit", edit_comment_path(@post.subject.name,c.id), class: "btn btn-primary" %>
-									  		<% end %>
-										  	<%= link_to "Delete", delete_comment_path(@post.subject.name,c.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
-									  	<% end %>
-									  <% end %>
-					  			</div>
 								</div>
 							</div>
 						</div>
@@ -87,4 +86,8 @@
 	<div class="paginate paginate-bottom">
 		<%=will_paginate%>
 	</div>
+	<% if @posts.count >= 3 %>
+		<%= link_to "Comment", new_comment_path, class: "btn btn-success" %>
+		<%= link_to "Back", "/forum/#{@post.subject.name}", class: "btn btn-primary" %>
+	<% end %>
 </div>

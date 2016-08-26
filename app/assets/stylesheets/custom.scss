@@ -219,6 +219,10 @@ footer {
   }
 }
 
+.comment-body {
+  background-color: rgba(0,0,0,0.5);
+}
+
 select.subjects {
   display: block;
   width: 9em;
@@ -395,9 +399,12 @@ li.post{
     margin-bottom: 0;
     color: white;
   }
+}
 
-  .tool-buttons {
-    
+.tool-buttons {
+  text-align: left;
+  .btn{
+    bottom: 0;
   }
 }
 
