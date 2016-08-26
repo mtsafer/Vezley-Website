@@ -3,6 +3,7 @@ class User < ApplicationRecord
 	attr_accessor :remember_token, :activation_token, :reset_token
   before_create :create_activation_digest
   before_update :allow_or_deny_custom_status
+  validates :custom_status, length: {maximum: 15}
 	#before_save { email.downcase! }
 
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -111,6 +112,18 @@ class User < ApplicationRecord
 
   def allow_or_deny_custom_status
     (posts.count + comments.count) >= 15 || owner == 1 || mod == 1 || name.downcase == "mountsafurious"
+  end
+
+  def icon
+    if name.downcase == "mountsafurious"
+      "http://pre12.deviantart.net/b248/th/pre/f/2013/247/e/3/dragon_icon_by_ferocefv-d6krb7y.png"
+    elsif owner == 1
+      "https://static2.fjcdn.com/comments/It+s+just+some+silly+gifs+no+it+s+a+symbol+of+_048c9c01797436dfc9e96b7e0e2ff793.png"
+    elsif mod == 1
+      "http://www.iconarchive.com/download/i91290/icons8/windows-8/Military-Sword.ico"
+    else
+      "http://image.flaticon.com/icons/png/512/27/27825.png"
+    end
   end
 
 end

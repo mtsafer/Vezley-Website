@@ -8,7 +8,7 @@
 						<div class="content">
 							<p><%= logo_for @post.user %></p>
 							<p><%= link_to @post.user.name, user_path(@post.user) %></p>
-							<p><%= @post.user.status %></p>
+							<p><%= @post.user.status %>  <%= image_tag @post.user.icon, class: "user-icon" %></p>
 							<p>Joined: <%=@post.user.created_at.strftime("%-m/%-d/%-y")%></p>
 							<p>Posted: <%=@post.created_at.strftime("%-m/%-d/%-y")%></p>
 						</div>
@@ -51,7 +51,7 @@
 					  			</div>
 									<p><%= logo_for c.user %></p>
 									<p><%= link_to c.user.name, user_path(c.user) %></p>
-									<p><%= c.user.status %></p>
+									<p><%= c.user.status %> <%= image_tag c.user.icon, class: "user-icon" %></p>
 									<p>Joined: <%=c.user.created_at.strftime("%-m/%-e/%-y")%></p>
 									<p>Posted: <%=c.created_at.strftime("%-m/%-e/%-y, %l:%M %p")%></p>
 									<% if c.updated_at != c.created_at %>
