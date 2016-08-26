@@ -211,6 +211,19 @@ footer {
 
 /* the forums */
 
+.col-height.post-body{
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 0 15px 15px 0;
+  .content{
+    h1{
+      margin-top: 0px;
+    }
+  }
+  .inside{
+    margin-top: 0px;
+  }
+}
+
 .center-info {
   p {
     display: inline-block;
@@ -221,6 +234,7 @@ footer {
 
 .comment-body {
   background-color: rgba(0,0,0,0.5);
+  border-radius: 0 15px 15px 0;
 }
 
 select.subjects {
@@ -308,6 +322,9 @@ li.post{
     margin-top: 0px;
     margin-bottom: 0px;
   }
+  .inside{
+    margin-top: 0px;
+  }
 }
 
 .row-height {
@@ -319,6 +336,12 @@ li.post{
         }
       }
     }
+  }
+}
+
+.info.comment {
+  row {
+    width: 100%;
   }
 }
 
@@ -404,8 +427,12 @@ li.post{
 .tool-buttons {
   text-align: left;
   .btn{
-    bottom: 0;
+    margin-top: 0px;
   }
+}
+
+.posts .tool-buttons {
+  text-align: center;
 }
 
 /* contact */
