@@ -16,6 +16,7 @@ gem 'faker',                   '1.6.3'
 gem "newrelic_rpm"
 gem 'omniauth-twitch'
 gem 'omniauth'
+gem 'rails_autolink'
 
 group :development, :test do
   gem 'sqlite3', '1.3.11'
