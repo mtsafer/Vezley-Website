@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
 	def show
 		@post = Post.find_by_id params[:id]
-		@posts = Comment.where(post_id: @post.id).paginate(page: params[:page],
+		@posts = Comment.where(post_id: @post.id).order(:created_at).paginate(page: params[:page],
 																									 per_page: 10)
 		if current_user
 			viewing = Viewing.find_or_create_by(user_id: current_user.id,
