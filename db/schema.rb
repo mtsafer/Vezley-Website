@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826020528) do
+ActiveRecord::Schema.define(version: 20160827053521) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -79,6 +79,14 @@ ActiveRecord::Schema.define(version: 20160826020528) do
     t.string   "logo"
     t.boolean  "public_profile",    default: false
     t.string   "custom_status"
+  end
+
+  create_table "viewings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "viewed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
