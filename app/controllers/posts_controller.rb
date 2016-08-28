@@ -12,8 +12,13 @@ class PostsController < ApplicationController
 	end
 
 	def new
-		@post = Post.new
-		@subject = params[:subject]
+		if logged_in?
+			@post = Post.new
+			@subject = params[:subject]
+		else
+			flash[:warning] = "You must be logged in to post on the forum"
+			redirect_to "/forum/all"
+		end
 	end
 
 	def create
@@ -29,7 +34,7 @@ class PostsController < ApplicationController
 			end
 		else
 			flash[:warning] = "You must be logged in to post on the forum"
-	    redirect_to login_path # halts request cycle
+	    redirect_to "/forum/#{params[:subject]}/new"
 		end
 	end
 

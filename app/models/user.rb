@@ -110,6 +110,10 @@ class User < ApplicationRecord
     end
   end
 
+  def name_downcase
+    name.downcase
+  end
+
   def allow_or_deny_custom_status
     (posts.count + comments.count) >= 15 || owner == 1 || mod == 1 || name.downcase == "mountsafurious"
   end

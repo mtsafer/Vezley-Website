@@ -1,9 +1,14 @@
 class CommentsController < ApplicationController
 
 	def new
-		@comment = Comment.new
-		@subject = params[:subject]
-		@id = params[:id]
+		if logged_in?
+			@comment = Comment.new
+			@subject = params[:subject]
+			@id = params[:id]
+		else
+			flash[:warning] = "You must be logged in to post on the forum"
+	    redirect_to "/forum/#{params[:subject]}/#{params[:id]}"
+		end
 	end
 
 	def create
