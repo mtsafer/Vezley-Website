@@ -106,7 +106,7 @@ class User < ApplicationRecord
     elsif mod == 1
       "Moderator"
     else
-      "viewer"
+      "Viewer"
     end
   end
 
