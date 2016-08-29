@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 					render :edit
 				end
 			else
-				flash[:danger] = "You must constuct additional pylons!"
+				flash[:danger] = "You must construct additional pylons!"
 				render :edit
 			end
 		else

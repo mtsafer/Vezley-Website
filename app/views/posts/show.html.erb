@@ -6,6 +6,16 @@
 				<div class="col-md-4 col-height user-info post-info">
 					<div class="inside">
 						<div class="content">
+							<div class="tool-buttons">
+								<% if current_user %>
+									<% if current_user.mod == 1 || current_user == @post.user %>
+							  		<% if current_user == @post.user%>
+							  			<%= link_to "Edit", "/forum/#{@post.id}/edit", class: "btn btn-primary" %>
+							  		<% end %>
+								  	<%= link_to "Delete", post_path(@post.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+							  	<% end %>
+							  <% end %>
+			  			</div>
 							<p><%= logo_for @post.user %></p>
 							<p><%= link_to @post.user.name, user_path(@post.user) %></p>
 							<p><%= @post.user.status %>  <%= image_tag @post.user.icon, class: "user-icon" %></p>
