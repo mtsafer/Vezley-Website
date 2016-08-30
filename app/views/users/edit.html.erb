@@ -41,8 +41,8 @@
 
 				  <%= f.label :email %>
 				  <%= f.text_field :email, class: 'form-control' %>
-				  <% if  @user.comments.count + @user.posts.count < 15 && @user.mod != 1 && @user.owner != 1%>
-				  	<%= f.label :custom_status, "Give yourself a cool forum label!\n(#{15-@user.comments.count + @user.posts.count} comments or posts to unlock)" %>
+				  <% if  !@user.allow_or_deny_custom_status%>
+				  	<%= f.label :custom_status, "Give yourself a cool forum label!\n(#{15-@user.comments.count - @user.posts.count} comments or posts to unlock)" %>
 				  <% else %>
 				  	<%= f.label :custom_status, "Give yourself a cool forum label!" %>
 				  <% end %>

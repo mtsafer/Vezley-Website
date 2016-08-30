@@ -21,12 +21,21 @@ class UsersController < ApplicationController
 	def update
 		@user = User.find params[:id]
 		if current_user && current_user == @user
-			if @user.allow_or_deny_custom_status || params[:custom_status] == @user.status
-				if @user.update user_params
-					flash[:success] = "Profile updated"
-					redirect_to user_path(@user)
+			if @user.allow_or_deny_custom_status || params[:user][:custom_status] == @user.status || params[:user][:custom_status].empty?
+				if params[:user][:custom_status].empty?	
+					if @user.update user_params_without_custom_status
+						flash[:success] = "Profile updated"
+						redirect_to user_path(@user)
+					else
+						render :edit
+					end
 				else
-					render :edit
+					if @user.update user_params
+						flash[:success] = "Profile updated"
+						redirect_to user_path(@user)
+					else
+						render :edit
+					end
 				end
 			else
 				flash[:danger] = "You must construct additional pylons!"
@@ -106,6 +115,11 @@ class UsersController < ApplicationController
 		def user_params
 			params.require(:user).permit(:name, :email, :password,
 										 :password_confirmation, :public_profile, :custom_status)
+		end
+
+		def user_params_without_custom_status
+			params.require(:user).permit(:name, :email, :password,
+										 :password_confirmation, :public_profile)
 		end
 
 end
