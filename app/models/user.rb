@@ -2,7 +2,7 @@ class User < ApplicationRecord
 
 	attr_accessor :remember_token, :activation_token, :reset_token
   before_create :create_activation_digest
-  before_update :allow_or_deny_custom_status
+  #before_update :allow_or_deny_custom_status, if: "custom_status.nil"
   validates :custom_status, length: { maximum: 15 }, uniqueness: { case_sensitive: false }, allow_nil: true
 	#before_save { email.downcase! }
 

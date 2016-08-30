@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 		@post = Post.find_by_id params[:id]
 		@posts = Comment.where(post_id: @post.id).order(:created_at).paginate(page: params[:page],
 																									 per_page: 10)
-		if current_user
+		if logged_in?
 			viewing = Viewing.find_or_create_by(user_id: current_user.id,
 																					post_id: @post.id)
 			viewing.view_now
